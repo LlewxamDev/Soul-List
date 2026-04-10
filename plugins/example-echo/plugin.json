@@ -1,0 +1,8 @@
+{
+  "id": "example-echo",
+  "name": "Example Echo Plugin",
+  "version": "1.0.0",
+  "enabledByDefault": true,
+  "entry": "./index.ts",
+  "categories": ["fun"]
+}

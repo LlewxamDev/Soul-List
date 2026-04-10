@@ -1,0 +1,50 @@
+{
+  "name": "soul-list",
+  "version": "0.1.0",
+  "description": "Soul-List: bot de WhatsApp modular em TypeScript + Baileys com sistema de plugins.",
+  "private": true,
+  "main": "dist/src/index.js",
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "build": "tsc -p tsconfig.json && node scripts/copy-assets.mjs",
+    "start": "node dist/src/index.js",
+    "typecheck": "tsc --noEmit",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "tsx scripts/migrate.ts"
+  },
+  "keywords": [
+    "whatsapp",
+    "baileys",
+    "typescript",
+    "plugins",
+    "bot"
+  ],
+  "author": "OpenAI Codex",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "@libsql/client": "^0.14.0",
+    "@vitalets/google-translate-api": "^9.2.1",
+    "@whiskeysockets/baileys": "^6.7.18",
+    "dayjs": "^1.11.13",
+    "dotenv": "^16.4.7",
+    "drizzle-orm": "^0.39.1",
+    "fast-xml-parser": "^4.5.1",
+    "ffmpeg-static": "^5.2.0",
+    "fluent-ffmpeg": "^2.1.3",
+    "openai": "^4.86.2",
+    "pino": "^9.6.0",
+    "pino-pretty": "^13.0.0",
+    "sharp": "^0.33.5",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/fluent-ffmpeg": "^2.1.27",
+    "@types/node": "^22.10.2",
+    "drizzle-kit": "^0.30.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  }
+}

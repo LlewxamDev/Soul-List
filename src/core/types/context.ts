@@ -1,0 +1,51 @@
+import type { WAMessage, WASocket } from "@whiskeysockets/baileys";
+import type { Logger } from "pino";
+import type { RegisteredCommand } from "./command";
+import type { BotRepositories } from "./repositories";
+import type { BotServices } from "./services";
+import type { AppEnv } from "../../config/env";
+import type { CommandRegistry } from "../registry/CommandRegistry";
+
+export interface MediaSummary {
+  hasImage: boolean;
+  hasVideo: boolean;
+  hasAudio: boolean;
+  hasSticker: boolean;
+}
+
+export interface ParsedIncomingMessage {
+  text: string;
+  normalizedText: string;
+  prefix: string | null;
+  commandName: string | null;
+  args: string[];
+  argString: string;
+  from: string;
+  sender: string;
+  pushName: string;
+  isGroup: boolean;
+  quotedMessage?: WAMessage;
+  media: MediaSummary;
+}
+
+export interface CommandContext extends ParsedIncomingMessage {
+  env: AppEnv;
+  socket: WASocket;
+  rawMessage: WAMessage;
+  logger: Logger;
+  services: BotServices;
+  repositories: BotRepositories;
+  registry: CommandRegistry;
+  command: RegisteredCommand;
+  isAdmin: boolean;
+  isOwner: boolean;
+  isPremium: boolean;
+  reply(text: string): Promise<void>;
+  react(emoji: string): Promise<void>;
+  sendText(text: string): Promise<void>;
+  sendImage(input: Buffer | string, caption?: string): Promise<void>;
+  sendAudio(input: Buffer | string, ptt?: boolean): Promise<void>;
+  sendVideo(input: Buffer | string, caption?: string): Promise<void>;
+  sendSticker(input: Buffer): Promise<void>;
+  downloadMedia(): Promise<Buffer | null>;
+}

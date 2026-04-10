@@ -1,0 +1,35 @@
+import type { AIService } from "../../services/ai/AIService";
+import type { AnimeService } from "../../services/anime/AnimeService";
+import type { BookService } from "../../services/books/BookService";
+import type { CacheService } from "../../services/cache/CacheService";
+import type { FFmpegService } from "../../services/ffmpeg/FFmpegService";
+import type { MediaService } from "../../services/media/MediaService";
+import type { MovieService } from "../../services/movies/MovieService";
+import type { NewsService } from "../../services/news/NewsService";
+import type { SearchService } from "../../services/search/SearchService";
+import type { SpeechService } from "../../services/speech/SpeechService";
+import type { StickerService } from "../../services/stickers/StickerService";
+import type { TranslationService } from "../../services/translation/TranslationService";
+import type { WeatherService } from "../../services/weather/WeatherService";
+import type { WikipediaService } from "../../services/search/WikipediaService";
+import type { PlayStoreService } from "../../services/search/PlayStoreService";
+import type { RateLimitService } from "../../services/cache/RateLimitService";
+
+export interface BotServices {
+  cache: CacheService;
+  rateLimit: RateLimitService;
+  search: SearchService;
+  wikipedia: WikipediaService;
+  weather: WeatherService;
+  news: NewsService;
+  books: BookService;
+  movies: MovieService;
+  translation: TranslationService;
+  playStore: PlayStoreService;
+  media: MediaService;
+  ffmpeg: FFmpegService;
+  stickers: StickerService;
+  speech: SpeechService;
+  ai: AIService;
+  anime: AnimeService;
+}
