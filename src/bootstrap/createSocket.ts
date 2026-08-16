@@ -16,6 +16,26 @@ export async function createSocket(env: AppEnv, logger: Logger) {
   });
 
   if (env.pairingNumber && !socket.authState.creds.registered) {
+    // O socket é iniciado no próximo tick pelo Baileys. Aguardar esse ciclo
+    // evita chamar requestPairingCode antes de o transporte estar disponível.
+    await new Promise<void>((resolve) => {
+      let settled = false;
+      const finish = (): void => {
+        if (settled) return;
+        settled = true;
+        socket.ev.off("connection.update", onUpdate);
+        clearTimeout(timeout);
+        resolve();
+      };
+      const onUpdate = (update: { connection?: string }): void => {
+        if (update.connection === "connecting" || update.connection === "open") {
+          finish();
+        }
+      };
+      const timeout = setTimeout(finish, 1_000);
+      socket.ev.on("connection.update", onUpdate);
+    });
+
     const code = await socket.requestPairingCode(env.pairingNumber);
     logger.info({ pairingCode: code }, "Pairing code gerado.");
   }
