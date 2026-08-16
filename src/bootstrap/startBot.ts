@@ -15,7 +15,7 @@ export async function startBot(): Promise<void> {
   const config = createBotConfig(env);
   logger.info({ bot: config.name, owner: config.ownerName }, "Inicializando Soul-List.");
 
-  const database = createDatabase(env.databaseUrl);
+  const database = await createDatabase(env.databaseUrl);
   const repositories = createRepositories(database);
   const services = createServices(env);
   const runtime = new AppRuntime(env, logger, services, repositories);

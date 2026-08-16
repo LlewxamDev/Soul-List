@@ -12,7 +12,7 @@ const envSchema = z.object({
   PREFIXES: z.string().default("!"),
   TIMEZONE: z.string().default("America/Sao_Paulo"),
   DEFAULT_LANGUAGE: z.string().default("pt-BR"),
-  DATABASE_URL: z.string().default("./data/soul-list.db"),
+  DATABASE_URL: z.string().default("./soul-list.db"),
   SESSION_DIR: z.string().default("./sessions"),
   LOG_LEVEL: z.enum(["fatal", "error", "warn", "info", "debug", "trace"]).default("info"),
   ENABLE_SENSITIVE_CATEGORIES: z
