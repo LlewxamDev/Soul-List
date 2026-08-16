@@ -34,14 +34,14 @@ function audioTransform(
 
 export const fastAudioCommand = audioTransform(
   "audiorapido",
-  ["audiofast", "audiovelocidade"],
+  ["audiofast", "audiovelocidade", "fast"],
   "Acelera um áudio ou vídeo convertido para MP3.",
   (context, media) => context.services.ffmpeg.speedAudio(media)
 );
 
 export const slowAudioCommand = audioTransform(
   "audiolento",
-  ["audioslow"],
+  ["audioslow", "slow"],
   "Deixa um áudio ou vídeo mais lento.",
   (context, media) => context.services.ffmpeg.slowAudio(media)
 );
@@ -55,7 +55,7 @@ export const reverseAudioCommand = audioTransform(
 
 export const bassAudioCommand = audioTransform(
   "bass",
-  ["grave", "bassboost"],
+  ["grave", "bassboost", "bass2", "bass3"],
   "Reforça os graves de um áudio ou vídeo.",
   (context, media) => context.services.ffmpeg.bassBoost(media)
 );

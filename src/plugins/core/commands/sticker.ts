@@ -3,7 +3,7 @@ import type { CommandModule } from "../../../core/types/command";
 export const stickerCommand: CommandModule = {
   definition: {
     name: "sticker",
-    aliases: ["fig", "s"],
+    aliases: ["fig", "s", "st", "figfundo", "figusemfundo", "sfundo"],
     description: "Converte uma imagem em figurinha.",
     usage: "!sticker (respondendo uma imagem)",
     category: "stickers",

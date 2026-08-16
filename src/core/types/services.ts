@@ -2,8 +2,11 @@ import type { AIService } from "../../services/ai/AIService";
 import type { AnimeService } from "../../services/anime/AnimeService";
 import type { BookService } from "../../services/books/BookService";
 import type { CacheService } from "../../services/cache/CacheService";
+import type { CalculatorService } from "../../services/calculator/CalculatorService";
 import type { FFmpegService } from "../../services/ffmpeg/FFmpegService";
 import type { MediaService } from "../../services/media/MediaService";
+import type { LocationService } from "../../services/location/LocationService";
+import type { ImageEffectsService } from "../../services/image-effects/ImageEffectsService";
 import type { MovieService } from "../../services/movies/MovieService";
 import type { NewsService } from "../../services/news/NewsService";
 import type { SearchService } from "../../services/search/SearchService";
@@ -18,6 +21,7 @@ import type { YouTubeService } from "../../services/youtube/YouTubeService";
 
 export interface BotServices {
   cache: CacheService;
+  calculator: CalculatorService;
   rateLimit: RateLimitService;
   search: SearchService;
   wikipedia: WikipediaService;
@@ -28,6 +32,8 @@ export interface BotServices {
   translation: TranslationService;
   playStore: PlayStoreService;
   media: MediaService;
+  location: LocationService;
+  imageEffects: ImageEffectsService;
   ffmpeg: FFmpegService;
   stickers: StickerService;
   speech: SpeechService;

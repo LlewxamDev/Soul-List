@@ -32,6 +32,14 @@ import {
   reverseAudioCommand,
   slowAudioCommand
 } from "./commands/audioTransforms";
+import { interactionCommands } from "./commands/interactionCommands";
+import { funUtilityCommands } from "./commands/funUtilities";
+import { cepCommand } from "./commands/locationCommands";
+import { mediaConversionCommands } from "./commands/mediaConversions";
+import { economyCommands } from "./commands/economyCommands";
+import { aiQuestionCommand } from "./commands/aiCommands";
+import { zodiacCommand } from "./commands/zodiac";
+import { imageEffectCommands } from "./commands/imageEffects";
 
 const plugin: BotPlugin = {
   manifest: {
@@ -72,7 +80,15 @@ const plugin: BotPlugin = {
     bassAudioCommand,
     fastVideoCommand,
     animeInfoCommand,
-    tagMeCommand
+    tagMeCommand,
+    ...interactionCommands,
+    ...funUtilityCommands,
+    cepCommand,
+    ...mediaConversionCommands,
+    ...economyCommands,
+    aiQuestionCommand,
+    zodiacCommand,
+    ...imageEffectCommands
   ]
 };
 

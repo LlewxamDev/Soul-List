@@ -18,4 +18,14 @@ export class EconomyRepository {
       where: eq(economyTable.userId, userId)
     });
   }
+
+  public async adjustBalance(userId: string, delta: number): Promise<number> {
+    const current = await this.get(userId);
+    const balance = Math.max(0, (current?.balance ?? 0) + delta);
+    await this.database.db
+      .update(economyTable)
+      .set({ balance, updatedAt: new Date() })
+      .where(eq(economyTable.userId, userId));
+    return balance;
+  }
 }

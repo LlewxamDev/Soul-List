@@ -5,6 +5,7 @@ import { AfkRepository } from "./afk/AfkRepository";
 import { EconomyRepository } from "./economy/EconomyRepository";
 import { GameSessionRepository } from "./games/GameSessionRepository";
 import { GroupRepository } from "./groups/GroupRepository";
+import { FeatureToggleRepository } from "./features/FeatureToggleRepository";
 import { NotesRepository } from "./notes/NotesRepository";
 import { PremiumRepository } from "./premium/PremiumRepository";
 import { SettingsRepository } from "./settings/SettingsRepository";
@@ -15,6 +16,7 @@ export function createRepositories(database: DatabaseClient): BotRepositories {
   return {
     users: new UserRepository(database),
     groups: new GroupRepository(database),
+    features: new FeatureToggleRepository(database),
     settings: new SettingsRepository(database),
     premium: new PremiumRepository(database),
     afk: new AfkRepository(database),

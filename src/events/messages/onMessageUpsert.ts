@@ -16,6 +16,42 @@ async function resolveAdminStatus(socket: WASocket, chatId: string, sender: stri
   }
 }
 
+async function enforceGroupFeatures(
+  socket: WASocket,
+  runtime: AppRuntime,
+  message: WAMessage,
+  parsed: ReturnType<typeof parseIncomingMessage>,
+  isAdmin: boolean,
+  isOwner: boolean
+): Promise<boolean> {
+  if (!parsed.isGroup || isAdmin || isOwner) {
+    return false;
+  }
+
+  const checks = [
+    { feature: "antilink", matches: /(chat\.whatsapp\.com|wa\.me\/|whatsapp\.com\/)/i, label: "links de convite" },
+    { feature: "anti-image", matches: parsed.media.hasImage, label: "imagens" },
+    { feature: "anti-video", matches: parsed.media.hasVideo, label: "vídeos" },
+    { feature: "anti-audio", matches: parsed.media.hasAudio, label: "áudios" },
+    { feature: "anti-sticker", matches: parsed.media.hasSticker, label: "stickers" }
+  ];
+
+  for (const check of checks) {
+    const matches = typeof check.matches === "boolean" ? check.matches : check.matches.test(parsed.text);
+    if (!matches || !(await runtime.repositories.features.isEnabled(check.feature, parsed.from))) {
+      continue;
+    }
+    try {
+      await socket.sendMessage(parsed.from, { delete: message.key });
+    } catch (error) {
+      runtime.logger.debug({ error, feature: check.feature }, "Não foi possível apagar a mensagem bloqueada.");
+    }
+    await socket.sendMessage(parsed.from, { text: `Mensagem removida: este grupo bloqueia ${check.label}.` });
+    return true;
+  }
+  return false;
+}
+
 export async function onMessageUpsert(
   socket: WASocket,
   runtime: AppRuntime,
@@ -64,14 +100,18 @@ async function handleMessage(socket: WASocket, runtime: AppRuntime, message: WAM
     });
   }
 
+  const isOwner = runtime.env.ownerNumbers.includes(parsed.sender.replace(/\D/g, ""));
+  const isAdmin = await resolveAdminStatus(socket, parsed.from, parsed.sender);
+  if (await enforceGroupFeatures(socket, runtime, message, parsed, isAdmin, isOwner)) {
+    return;
+  }
+
   if (!parsed.commandName || !runtime.plugins.registry.has(parsed.commandName)) {
     return;
   }
 
   const command = runtime.plugins.registry.get(parsed.commandName);
-  const isOwner = runtime.env.ownerNumbers.includes(parsed.sender.replace(/\D/g, ""));
   const isPremium = await runtime.repositories.premium.isPremium(parsed.sender);
-  const isAdmin = await resolveAdminStatus(socket, parsed.from, parsed.sender);
 
   if (parsed.isGroup) {
     const groupRecord = await runtime.repositories.groups.findById(parsed.from);

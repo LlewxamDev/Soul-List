@@ -69,4 +69,14 @@ export class FFmpegService {
         .format("mp4");
     });
   }
+
+  public toAnimation(input: Buffer): Promise<Buffer> {
+    return this.runTransform(input, "mp4", (command) => {
+      command
+        .videoFilters("fps=15,scale=512:-2:flags=lanczos,format=yuv420p")
+        .videoCodec("libx264")
+        .outputOptions("-movflags +faststart")
+        .format("mp4");
+    });
+  }
 }

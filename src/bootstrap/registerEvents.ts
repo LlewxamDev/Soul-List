@@ -19,7 +19,7 @@ export function registerEvents(
     onConnectionUpdate(runtime.logger, update, restart);
   });
   socket.ev.on("group-participants.update", (update) => {
-    onParticipantsUpdate(runtime.logger, update);
+    void onParticipantsUpdate(socket, runtime, update);
   });
   socket.ev.on("call", (calls) => {
     onCall(runtime.logger, calls);

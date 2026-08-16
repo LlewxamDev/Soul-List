@@ -4,9 +4,12 @@ import { AIService } from "./ai/AIService";
 import { AnimeService } from "./anime/AnimeService";
 import { BookService } from "./books/BookService";
 import { CacheService } from "./cache/CacheService";
+import { CalculatorService } from "./calculator/CalculatorService";
 import { RateLimitService } from "./cache/RateLimitService";
 import { FFmpegService } from "./ffmpeg/FFmpegService";
 import { MediaService } from "./media/MediaService";
+import { LocationService } from "./location/LocationService";
+import { ImageEffectsService } from "./image-effects/ImageEffectsService";
 import { MovieService } from "./movies/MovieService";
 import { NewsService } from "./news/NewsService";
 import { PlayStoreService } from "./search/PlayStoreService";
@@ -21,6 +24,7 @@ import { YouTubeService } from "./youtube/YouTubeService";
 export function createServices(env: AppEnv): BotServices {
   return {
     cache: new CacheService(),
+    calculator: new CalculatorService(),
     rateLimit: new RateLimitService(env.rateLimitWindowSeconds * 1000, env.rateLimitMaxCommands),
     search: new SearchService(),
     wikipedia: new WikipediaService(),
@@ -31,6 +35,8 @@ export function createServices(env: AppEnv): BotServices {
     translation: new TranslationService(),
     playStore: new PlayStoreService(),
     media: new MediaService(env),
+    location: new LocationService(),
+    imageEffects: new ImageEffectsService(),
     ffmpeg: new FFmpegService(),
     stickers: new StickerService(),
     speech: new SpeechService(env.openAiApiKey),

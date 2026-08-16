@@ -4,54 +4,197 @@
 
 ## Resumo
 
-Foram encontrados **1479 rótulos únicos de `case`** nos pontos de entrada das referências. O Soul-List atual possui **84 nomes entre comandos principais e aliases** no seu registry. A deduplicação abaixo é por grafia normalizada; nomes iguais com comportamentos diferentes permanecem marcados para comparação semântica.
+Foram encontrados **1479 rótulos únicos de `case`** nos pontos de entrada das referências. O Soul-List atual possui **263 nomes entre comandos principais e aliases** no seu registry. A deduplicação abaixo é por grafia normalizada; nomes iguais com comportamentos diferentes permanecem marcados para comparação semântica.
 
 | Grupo | Quantidade | Tratamento |
 |---|---:|---|
-| Já presentes no Soul-List | 37 | Preservar e integrar ao menu interativo. |
-| Comportamento claro | 10 | Priorizar adaptação após comparar o handler da referência. |
-| Requerem esclarecimento | 1416 | Perguntar ao usuário antes de implementar comportamento específico. |
+| Já presentes no Soul-List | 180 | Preservar e integrar ao menu interativo. |
+| Comportamento claro | 5 | Priorizar adaptação após comparar o handler da referência. |
+| Requerem esclarecimento | 1278 | Perguntar ao usuário antes de implementar comportamento específico. |
 | Excluir por indicação +18 | 16 | Não registrar no menu nem implementar nesta evolução. |
 
 ## Comandos já presentes no Soul-List
 
 | Comando/alias | Bots de origem | Ocorrências | Decisão |
 |---|---|---:|---|
+| `add` | AnnaV6-Ultra, Kokushibot | 2 | já existe no Soul-List |
+| `adm` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
 | `admins` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `adverter` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `advertir` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `affect` | AnnaV6-Ultra, Kokushibot | 2 | já existe no Soul-List |
 | `afk` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
 | `anime` | Kokushibot | 1 | já existe no Soul-List |
+| `anotacao` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `anotacoes` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `anotar` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `antiaudio` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `anticatalg` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `anticatalogo` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `anticontato` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `antictt` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `antidoc` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `antidocumento` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `antifake` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `antiimg` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `antilink` | AnnaV6-Ultra, Kokushibot, succubus-bot, zagan | 4 | já existe no Soul-List |
+| `antilinkgp` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `antilinkhard` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `antiloc` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `antinotas` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `antipalavra` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `antipalavrao` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `antipalavrão` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `antisticker` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `antivideo` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `apagar` | succubus-bot | 1 | já existe no Soul-List |
+| `autofigu` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `autosticker` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `baiana` | AnnaV6-Ultra | 1 | já existe no Soul-List |
+| `baiano` | AnnaV6-Ultra | 1 | já existe no Soul-List |
 | `ban` | AnnaV6-Ultra, Kokushibot, succubus-bot, zagan | 4 | já existe no Soul-List |
+| `beautiful` | AnnaV6-Ultra, Kokushibot | 2 | já existe no Soul-List |
+| `bebado` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `beijar` | Kokushibot | 1 | já existe no Soul-List |
+| `beijo` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `bemvindo` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `bemvindo2` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `beta` | AnnaV6-Ultra | 1 | já existe no Soul-List |
+| `blur` | AnnaV6-Ultra, Kokushibot | 2 | já existe no Soul-List |
+| `bnw` | AnnaV6-Ultra, Kokushibot | 2 | já existe no Soul-List |
 | `book` | AnnaV6-Ultra, Kokushibot | 2 | já existe no Soul-List |
+| `brincadeiras` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `calc` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `calculadora` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `calcular` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `carioca` | AnnaV6-Ultra | 1 | já existe no Soul-List |
+| `cassino` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `cep` | AnnaV6-Ultra, Kokushibot, zagan | 4 | já existe no Soul-List |
+| `chance` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `chatgpt` | AnnaV6-Ultra, Kokushibot, succubus-bot, zagan | 5 | já existe no Soul-List |
+| `chutar` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `chute` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `circle` | AnnaV6-Ultra, Kokushibot | 2 | já existe no Soul-List |
+| `cita` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
 | `clima` | AnnaV6-Ultra, Kokushibot | 2 | já existe no Soul-List |
+| `coins` | AnnaV6-Ultra | 1 | já existe no Soul-List |
+| `conselho` | AnnaV6-Ultra | 1 | já existe no Soul-List |
+| `conselhob` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `conselhobiblico` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `conselhos` | AnnaV6-Ultra | 1 | já existe no Soul-List |
+| `conselhosb` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `conselhosbiblico` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `convite` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `corno` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `del` | AnnaV6-Ultra, Kokushibot, succubus-bot, zagan | 6 | já existe no Soul-List |
+| `delet` | succubus-bot | 1 | já existe no Soul-List |
+| `deletar` | AnnaV6-Ultra, Kokushibot, succubus-bot, zagan | 4 | já existe no Soul-List |
+| `delete` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `descgp` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `descriçãogp` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `dither` | AnnaV6-Ultra, Kokushibot | 2 | já existe no Soul-List |
+| `dogolpe` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `donomenu` | AnnaV6-Ultra, zagan | 2 | já existe no Soul-List |
+| `efeitoimg` | AnnaV6-Ultra | 1 | já existe no Soul-List |
+| `efeitos` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `efeitosimg` | AnnaV6-Ultra | 1 | já existe no Soul-List |
+| `entrar` | AnnaV6-Ultra, Kokushibot, zagan | 5 | já existe no Soul-List |
+| `estatisticas` | AnnaV6-Ultra | 1 | já existe no Soul-List |
+| `fastvid` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `feio` | AnnaV6-Ultra, Kokushibot, succubus-bot, zagan | 4 | já existe no Soul-List |
+| `figfundo` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `figusemfundo` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `gado` | AnnaV6-Ultra, Kokushibot, succubus-bot, zagan | 4 | já existe no Soul-List |
 | `games` | Kokushibot | 1 | já existe no Soul-List |
+| `gay` | AnnaV6-Ultra, Kokushibot, succubus-bot, zagan | 4 | já existe no Soul-List |
+| `gostosa` | AnnaV6-Ultra, Kokushibot, succubus-bot, zagan | 4 | já existe no Soul-List |
+| `gostoso` | AnnaV6-Ultra, Kokushibot, succubus-bot, zagan | 4 | já existe no Soul-List |
+| `gpinfo` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `gpt` | AnnaV6-Ultra, Kokushibot, succubus-bot, zagan | 4 | já existe no Soul-List |
+| `grupoinfo` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
 | `help` | zagan | 1 | já existe no Soul-List |
+| `hidetag` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
 | `infocmd` | Kokushibot | 1 | já existe no Soul-List |
+| `infogp` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `infogrupo` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `invert` | AnnaV6-Ultra, Kokushibot | 2 | já existe no Soul-List |
+| `join` | AnnaV6-Ultra, Kokushibot, zagan | 5 | já existe no Soul-List |
 | `linkgroup` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
 | `logos` | AnnaV6-Ultra, Kokushibot | 2 | já existe no Soul-List |
+| `louca` | AnnaV6-Ultra | 1 | já existe no Soul-List |
+| `louco` | AnnaV6-Ultra | 1 | já existe no Soul-List |
+| `macaca` | AnnaV6-Ultra | 1 | já existe no Soul-List |
+| `macaco` | AnnaV6-Ultra | 1 | já existe no Soul-List |
+| `magik` | AnnaV6-Ultra, Kokushibot | 2 | já existe no Soul-List |
+| `marcar` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `mata` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `matar` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
 | `menu` | AnnaV6-Ultra, Kokushibot, succubus-bot, zagan | 4 | já existe no Soul-List |
+| `menu10` | AnnaV6-Ultra | 1 | já existe no Soul-List |
+| `menu2` | AnnaV6-Ultra, succubus-bot | 2 | já existe no Soul-List |
+| `menu3` | AnnaV6-Ultra, succubus-bot | 2 | já existe no Soul-List |
+| `menu4` | AnnaV6-Ultra, succubus-bot | 2 | já existe no Soul-List |
+| `menu5` | AnnaV6-Ultra, succubus-bot | 2 | já existe no Soul-List |
+| `menu6` | AnnaV6-Ultra, succubus-bot | 2 | já existe no Soul-List |
+| `menu7` | AnnaV6-Ultra | 1 | já existe no Soul-List |
+| `menu9` | AnnaV6-Ultra | 1 | já existe no Soul-List |
+| `menuadm` | AnnaV6-Ultra, Kokushibot, succubus-bot, zagan | 4 | já existe no Soul-List |
+| `menuadms` | AnnaV6-Ultra, zagan | 2 | já existe no Soul-List |
+| `menucoins` | AnnaV6-Ultra | 1 | já existe no Soul-List |
+| `menudono` | AnnaV6-Ultra, Kokushibot, succubus-bot, zagan | 4 | já existe no Soul-List |
+| `menulogo` | AnnaV6-Ultra | 1 | já existe no Soul-List |
 | `menulogos` | AnnaV6-Ultra, Kokushibot | 2 | já existe no Soul-List |
 | `menurpg` | Kokushibot | 1 | já existe no Soul-List |
 | `menuvip` | AnnaV6-Ultra | 1 | já existe no Soul-List |
+| `moeda` | zagan | 1 | já existe no Soul-List |
+| `moedas` | zagan | 1 | já existe no Soul-List |
 | `movie` | AnnaV6-Ultra | 1 | já existe no Soul-List |
 | `mute` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `nazista` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `nomegp` | AnnaV6-Ultra, Kokushibot, succubus-bot, zagan | 7 | já existe no Soul-List |
+| `nota` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `notas` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
 | `noticias` | AnnaV6-Ultra, Kokushibot | 2 | já existe no Soul-List |
 | `perfil` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `pergunta` | AnnaV6-Ultra, zagan | 2 | já existe no Soul-List |
 | `ping` | AnnaV6-Ultra, Kokushibot, succubus-bot, zagan | 4 | já existe no Soul-List |
+| `pixelate` | AnnaV6-Ultra, Kokushibot | 2 | já existe no Soul-List |
 | `play` | AnnaV6-Ultra, Kokushibot, succubus-bot, zagan | 4 | já existe no Soul-List |
 | `playstore` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
 | `premium` | Kokushibot | 1 | já existe no Soul-List |
 | `printsite` | AnnaV6-Ultra, Kokushibot | 3 | já existe no Soul-List |
 | `rankativo` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
 | `rankinativo` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `regras` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
 | `resetlink` | succubus-bot | 1 | já existe no Soul-List |
+| `rmadv` | AnnaV6-Ultra, Kokushibot | 2 | já existe no Soul-List |
+| `rmnota` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `rotate` | AnnaV6-Ultra, Kokushibot | 2 | já existe no Soul-List |
+| `saldo` | Kokushibot | 1 | já existe no Soul-List |
+| `scep` | AnnaV6-Ultra, Kokushibot | 2 | já existe no Soul-List |
 | `screenshot` | AnnaV6-Ultra | 1 | já existe no Soul-List |
+| `sepia` | AnnaV6-Ultra, Kokushibot | 2 | já existe no Soul-List |
 | `serie` | AnnaV6-Ultra, Kokushibot | 2 | já existe no Soul-List |
+| `sfundo` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `sigma` | AnnaV6-Ultra | 1 | já existe no Soul-List |
+| `signo` | AnnaV6-Ultra, Kokushibot, zagan | 4 | já existe no Soul-List |
+| `slot` | AnnaV6-Ultra | 1 | já existe no Soul-List |
+| `sorteio` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `st` | AnnaV6-Ultra, succubus-bot, zagan | 3 | já existe no Soul-List |
 | `status` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
 | `tagme` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `tapa` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `tirar_nota` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `togif` | AnnaV6-Ultra, Kokushibot, zagan | 4 | já existe no Soul-List |
+| `toimg` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
 | `tomp3` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `totag` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
 | `totext` | AnnaV6-Ultra, Kokushibot | 2 | já existe no Soul-List |
 | `traduzir` | AnnaV6-Ultra, Kokushibot | 2 | já existe no Soul-List |
+| `unkick` | AnnaV6-Ultra, Kokushibot | 2 | já existe no Soul-List |
+| `vesgo` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
 | `videorapido` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
+| `welcome` | AnnaV6-Ultra, Kokushibot, zagan | 3 | já existe no Soul-List |
 | `wiki` | AnnaV6-Ultra, Kokushibot | 2 | já existe no Soul-List |
 | `wikipedia` | AnnaV6-Ultra, Kokushibot | 2 | já existe no Soul-List |
 
@@ -59,13 +202,8 @@ Foram encontrados **1479 rótulos únicos de `case`** nos pontos de entrada das 
 
 | Comando/alias | Bots de origem | Ocorrências | Decisão |
 |---|---|---:|---|
-| `add` | AnnaV6-Ultra, Kokushibot | 2 | comportamento claro; implementar/adaptar |
-| `antilink` | AnnaV6-Ultra, Kokushibot, succubus-bot, zagan | 4 | comportamento claro; implementar/adaptar |
 | `banir` | AnnaV6-Ultra, Kokushibot, zagan | 3 | comportamento claro; implementar/adaptar |
-| `hidetag` | AnnaV6-Ultra, Kokushibot, zagan | 3 | comportamento claro; implementar/adaptar |
 | `kick` | AnnaV6-Ultra, Kokushibot, succubus-bot, zagan | 4 | comportamento claro; implementar/adaptar |
-| `toimg` | AnnaV6-Ultra, Kokushibot, zagan | 3 | comportamento claro; implementar/adaptar |
-| `welcome` | AnnaV6-Ultra, Kokushibot, zagan | 3 | comportamento claro; implementar/adaptar |
 | `ytdoc` | AnnaV6-Ultra, zagan | 2 | comportamento claro; implementar/adaptar |
 | `ytmp3` | AnnaV6-Ultra, Kokushibot, zagan | 3 | comportamento claro; implementar/adaptar |
 | `ytmp4` | AnnaV6-Ultra, Kokushibot, zagan | 3 | comportamento claro; implementar/adaptar |
@@ -123,11 +261,7 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `addrent` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `addvip` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `addxp` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
-| `adm` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `adolesc` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `adverter` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `advertir` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `affect` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `ai` | Kokushibot | 1 | requer esclarecimento |
 | `aiimg` | Kokushibot | 1 | requer esclarecimento |
 | `ailogic` | Kokushibot | 1 | requer esclarecimento |
@@ -152,40 +286,18 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `animeimg` | Kokushibot | 1 | requer esclarecimento |
 | `animesimg` | Kokushibot | 1 | requer esclarecimento |
 | `animetv` | AnnaV6-Ultra | 1 | requer esclarecimento |
-| `anotacao` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `anotacoes` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `anotar` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `anti-ddd` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `anti_ddd` | AnnaV6-Ultra | 1 | requer esclarecimento |
-| `antiaudio` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `anticatalg` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `anticatalogo` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `anticontato` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `antictt` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `antiddd` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `antiddd-list` | AnnaV6-Ultra | 1 | requer esclarecimento |
-| `antidoc` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `antidocumento` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `antifake` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `antiimg` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `antiligacao` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `antiligar` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `antiligação` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `antilinkeasy` | AnnaV6-Ultra | 1 | requer esclarecimento |
-| `antilinkgp` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `antilinkhard` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `antiloc` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `antinotas` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `antipalavra` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `antipalavrao` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `antipalavrão` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `antipv` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `antipv2` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `antipv3` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `antisticker` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `antivideo` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `ap` | Kokushibot | 1 | requer esclarecimento |
-| `apagar` | succubus-bot | 1 | requer esclarecimento |
 | `apr` | zagan | 1 | requer esclarecimento |
 | `apresentar` | Kokushibot, zagan | 2 | requer esclarecimento |
 | `aptoide` | AnnaV6-Ultra | 1 | requer esclarecimento |
@@ -217,16 +329,12 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `ausente` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `autobang` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `autodown` | zagan | 2 | requer esclarecimento |
-| `autofigu` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `autorepo` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `autoriza` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `autorizar` | AnnaV6-Ultra | 1 | requer esclarecimento |
-| `autosticker` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `avadakedavra` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `avaliarestabulo` | Kokushibot | 1 | requer esclarecimento |
 | `avalie` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `baiana` | AnnaV6-Ultra | 1 | requer esclarecimento |
-| `baiano` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `band` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `banfake` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `banfakes` | AnnaV6-Ultra | 1 | requer esclarecimento |
@@ -251,15 +359,8 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `bcgp` | Kokushibot, zagan | 2 | requer esclarecimento |
 | `bcgroup` | Kokushibot, zagan | 2 | requer esclarecimento |
 | `bdsm` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
-| `beautiful` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
-| `bebado` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `beijar` | Kokushibot | 1 | requer esclarecimento |
-| `beijo` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `bemvindo` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `bemvindo2` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `beneficios` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `berry` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
-| `beta` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `bigbrother` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `bin` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `bingchat` | Kokushibot | 1 | requer esclarecimento |
@@ -278,8 +379,6 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `blockuser` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `blood` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `blowjob` | AnnaV6-Ultra, succubus-bot | 2 | requer esclarecimento |
-| `blur` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
-| `bnw` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `bolsonaro` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `boobs` | AnnaV6-Ultra, succubus-bot | 2 | requer esclarecimento |
 | `boobsvizu` | succubus-bot | 1 | requer esclarecimento |
@@ -291,7 +390,6 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `brasileirao` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `break` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `brincadeira` | AnnaV6-Ultra, zagan | 2 | requer esclarecimento |
-| `brincadeiras` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `brlist` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `bt` | succubus-bot | 1 | requer esclarecimento |
 | `bug` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
@@ -300,9 +398,6 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `buscarsc` | Kokushibot | 1 | requer esclarecimento |
 | `button` | succubus-bot | 1 | requer esclarecimento |
 | `bvbot` | Kokushibot | 1 | requer esclarecimento |
-| `calc` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `calculadora` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `calcular` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `calendario` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `cancel_voting` | Kokushibot | 1 | requer esclarecimento |
 | `cancelarpedido` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
@@ -311,11 +406,9 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `capcut` | Kokushibot | 1 | requer esclarecimento |
 | `caracoroa` | Kokushibot | 1 | requer esclarecimento |
 | `carbon` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
-| `carioca` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `carteira` | Kokushibot | 1 | requer esclarecimento |
 | `casal` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `cases` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
-| `cassino` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `cattxt` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `cavalo` | Kokushibot | 1 | requer esclarecimento |
 | `cavalos` | Kokushibot | 1 | requer esclarecimento |
@@ -323,11 +416,8 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `cekidff` | Kokushibot | 1 | requer esclarecimento |
 | `celular` | Kokushibot, zagan | 2 | requer esclarecimento |
 | `cemiterio` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
-| `cep` | AnnaV6-Ultra, Kokushibot, zagan | 4 | requer esclarecimento |
-| `chance` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `changegroup` | Kokushibot | 1 | requer esclarecimento |
 | `chassi` | AnnaV6-Ultra | 1 | requer esclarecimento |
-| `chatgpt` | AnnaV6-Ultra, Kokushibot, succubus-bot, zagan | 5 | requer esclarecimento |
 | `chatgpt-3.5` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `chatgpt2` | succubus-bot | 1 | requer esclarecimento |
 | `chatgptlogic` | Kokushibot | 1 | requer esclarecimento |
@@ -335,11 +425,7 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `chocar` | Kokushibot | 1 | requer esclarecimento |
 | `chocarovo` | Kokushibot | 1 | requer esclarecimento |
 | `chufuyu` | AnnaV6-Ultra | 1 | requer esclarecimento |
-| `chutar` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `chute` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `circle` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `circulo` | zagan | 1 | requer esclarecimento |
-| `cita` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `clonar` | zagan | 1 | requer esclarecimento |
 | `cmdpremium` | zagan | 1 | requer esclarecimento |
 | `cmdsemprefixo` | Kokushibot | 1 | requer esclarecimento |
@@ -350,7 +436,6 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `codelistrent` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `coffecup` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `coffecup2` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
-| `coins` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `colaq` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `comandos` | zagan | 1 | requer esclarecimento |
 | `comandos-termux` | zagan | 1 | requer esclarecimento |
@@ -371,19 +456,11 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `config_gp` | Kokushibot | 1 | requer esclarecimento |
 | `configurar` | Kokushibot | 1 | requer esclarecimento |
 | `configurar-bot` | AnnaV6-Ultra, zagan | 2 | requer esclarecimento |
-| `conselho` | AnnaV6-Ultra | 1 | requer esclarecimento |
-| `conselhob` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `conselhobiblico` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `conselhos` | AnnaV6-Ultra | 1 | requer esclarecimento |
-| `conselhosb` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `conselhosbiblico` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `console` | zagan | 1 | requer esclarecimento |
 | `consultar_vip` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `consultargold` | zagan | 1 | requer esclarecimento |
 | `consultas` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `contardias` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
-| `convite` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `corno` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `correio` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `corretor` | Kokushibot | 1 | requer esclarecimento |
 | `cortesia24` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
@@ -422,7 +499,6 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `deepseek` | succubus-bot | 1 | requer esclarecimento |
 | `deepseek-code` | succubus-bot | 1 | requer esclarecimento |
 | `dehaze` | AnnaV6-Ultra | 1 | requer esclarecimento |
-| `del` | AnnaV6-Ultra, Kokushibot, succubus-bot, zagan | 6 | requer esclarecimento |
 | `del_ddd` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `del_infocmd` | Kokushibot | 1 | requer esclarecimento |
 | `delautoban` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
@@ -431,9 +507,6 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `delcmdvip` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `delcodegp` | Kokushibot | 1 | requer esclarecimento |
 | `delcoderent` | AnnaV6-Ultra | 1 | requer esclarecimento |
-| `delet` | succubus-bot | 1 | requer esclarecimento |
-| `deletar` | AnnaV6-Ultra, Kokushibot, succubus-bot, zagan | 4 | requer esclarecimento |
-| `delete` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `delete_ddd` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `deletechat` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `deletem` | Kokushibot, zagan | 2 | requer esclarecimento |
@@ -448,8 +521,6 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `delvip` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `demonfire` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `demongreen` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
-| `descgp` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `descriçãogp` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `desmutar` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `desmute` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `destrava` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
@@ -457,11 +528,9 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `diff` | Kokushibot | 1 | requer esclarecimento |
 | `digt` | zagan | 1 | requer esclarecimento |
 | `dinextenso` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
-| `dither` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `dl` | Kokushibot | 1 | requer esclarecimento |
 | `doc` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `docfake` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
-| `dogolpe` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `dono` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `dono1` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `dono10` | Kokushibot | 1 | requer esclarecimento |
@@ -473,7 +542,6 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `dono7` | Kokushibot | 1 | requer esclarecimento |
 | `dono8` | Kokushibot | 1 | requer esclarecimento |
 | `dono9` | Kokushibot | 1 | requer esclarecimento |
-| `donomenu` | AnnaV6-Ultra, zagan | 2 | requer esclarecimento |
 | `donos` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `download` | Kokushibot | 1 | requer esclarecimento |
 | `download-link` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
@@ -481,10 +549,7 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `duelo` | Kokushibot | 1 | requer esclarecimento |
 | `dupla` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `editanime` | Kokushibot | 1 | requer esclarecimento |
-| `efeitoimg` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `efeitoneon` | AnnaV6-Ultra | 1 | requer esclarecimento |
-| `efeitos` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `efeitosimg` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `efeitosmarcar` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `emoji` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `emoji-bot` | Kokushibot | 1 | requer esclarecimento |
@@ -498,7 +563,6 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `enigma` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `enquete` | succubus-bot | 1 | requer esclarecimento |
 | `entardecer` | AnnaV6-Ultra | 1 | requer esclarecimento |
-| `entrar` | AnnaV6-Ultra, Kokushibot, zagan | 5 | requer esclarecimento |
 | `enviar` | succubus-bot | 1 | requer esclarecimento |
 | `envmsg` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `envpv` | AnnaV6-Ultra | 2 | requer esclarecimento |
@@ -517,7 +581,6 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `esportenoticias` | AnnaV6-Ultra, zagan | 2 | requer esclarecimento |
 | `esquilo` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `estabulo` | Kokushibot | 1 | requer esclarecimento |
-| `estatisticas` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `estilizar` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `estourar` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `eununca` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
@@ -531,7 +594,6 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `fakechat` | Kokushibot | 1 | requer esclarecimento |
 | `fakemsg` | Kokushibot | 1 | requer esclarecimento |
 | `fast` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `fastvid` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `fatos` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `fazernick` | AnnaV6-Ultra, zagan | 2 | requer esclarecimento |
 | `fazerpix` | Kokushibot | 1 | requer esclarecimento |
@@ -539,7 +601,6 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `fb` | Kokushibot | 1 | requer esclarecimento |
 | `fbvid` | Kokushibot | 1 | requer esclarecimento |
 | `fbvideo` | Kokushibot | 1 | requer esclarecimento |
-| `feio` | AnnaV6-Ultra, Kokushibot, succubus-bot, zagan | 4 | requer esclarecimento |
 | `femdom` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `ff-log` | succubus-bot | 1 | requer esclarecimento |
 | `ff-perfil` | succubus-bot | 1 | requer esclarecimento |
@@ -552,7 +613,6 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `fiction` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `fiel` | succubus-bot | 1 | requer esclarecimento |
 | `figaleatoria` | AnnaV6-Ultra | 1 | requer esclarecimento |
-| `figfundo` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `figu` | Kokushibot | 1 | requer esclarecimento |
 | `figu-animais` | zagan | 1 | requer esclarecimento |
 | `figu-anime` | zagan | 1 | requer esclarecimento |
@@ -583,7 +643,6 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `figurinha` | Kokushibot | 1 | requer esclarecimento |
 | `figurinhas` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `figuroblox` | AnnaV6-Ultra | 1 | requer esclarecimento |
-| `figusemfundo` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `figuweb` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `figvideo` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `fire` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
@@ -605,7 +664,6 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `furtar` | Kokushibot | 1 | requer esclarecimento |
 | `g1noticia` | Kokushibot | 1 | requer esclarecimento |
 | `gada` | succubus-bot | 1 | requer esclarecimento |
-| `gado` | AnnaV6-Ultra, Kokushibot, succubus-bot, zagan | 4 | requer esclarecimento |
 | `galinheiro` | Kokushibot | 1 | requer esclarecimento |
 | `galo` | Kokushibot | 1 | requer esclarecimento |
 | `galos` | Kokushibot | 1 | requer esclarecimento |
@@ -615,7 +673,6 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `ganbganb` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `gangbang` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `gartic` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
-| `gay` | AnnaV6-Ultra, Kokushibot, succubus-bot, zagan | 4 | requer esclarecimento |
 | `gdrive` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `gelo` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `gemini` | AnnaV6-Ultra, Kokushibot, succubus-bot | 3 | requer esclarecimento |
@@ -652,10 +709,6 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `googlenews` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `googlesg` | zagan | 1 | requer esclarecimento |
 | `googlesrc` | AnnaV6-Ultra | 1 | requer esclarecimento |
-| `gostosa` | AnnaV6-Ultra, Kokushibot, succubus-bot, zagan | 4 | requer esclarecimento |
-| `gostoso` | AnnaV6-Ultra, Kokushibot, succubus-bot, zagan | 4 | requer esclarecimento |
-| `gpinfo` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `gpt` | AnnaV6-Ultra, Kokushibot, succubus-bot, zagan | 4 | requer esclarecimento |
 | `gpt-3.5` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `gpt-4` | Kokushibot | 1 | requer esclarecimento |
 | `gpt2` | succubus-bot | 1 | requer esclarecimento |
@@ -665,7 +718,6 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `grave` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `grave2` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `grupo` | AnnaV6-Ultra, Kokushibot, succubus-bot, zagan | 4 | requer esclarecimento |
-| `grupoinfo` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `grupos` | zagan | 1 | requer esclarecimento |
 | `gruposwhatsapp` | Kokushibot | 1 | requer esclarecimento |
 | `gtaia` | AnnaV6-Ultra | 1 | requer esclarecimento |
@@ -742,8 +794,6 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `infodono` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `infoduelo` | zagan | 1 | requer esclarecimento |
 | `infoforca` | zagan | 1 | requer esclarecimento |
-| `infogp` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `infogrupo` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `infolistanegra` | zagan | 1 | requer esclarecimento |
 | `infomultiprefix` | zagan | 1 | requer esclarecimento |
 | `infomultiprefixo` | zagan | 1 | requer esclarecimento |
@@ -765,7 +815,6 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `instastalker` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `instastory` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `instastorys` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
-| `invert` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `ip` | AnnaV6-Ultra, Kokushibot | 3 | requer esclarecimento |
 | `jahy` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `jail` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
@@ -774,7 +823,6 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `jogodaforca` | Kokushibot | 1 | requer esclarecimento |
 | `jogodavelha` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `jogos` | Kokushibot | 1 | requer esclarecimento |
-| `join` | AnnaV6-Ultra, Kokushibot, zagan | 5 | requer esclarecimento |
 | `jokerlogo` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `kanna` | succubus-bot | 1 | requer esclarecimento |
 | `kannavizu` | succubus-bot | 1 | requer esclarecimento |
@@ -872,26 +920,18 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `lojas_sc` | Kokushibot | 1 | requer esclarecimento |
 | `lojinha` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `loli` | AnnaV6-Ultra | 1 | requer esclarecimento |
-| `louca` | AnnaV6-Ultra | 1 | requer esclarecimento |
-| `louco` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `lovemsg` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `lovemsg2` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `lovemsg3` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `luxury` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `lyrics` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `lyrics2` | Kokushibot | 1 | requer esclarecimento |
-| `macaca` | AnnaV6-Ultra | 1 | requer esclarecimento |
-| `macaco` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `madeira` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
-| `magik` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
-| `marcar` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `marcar2` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `marcarwa` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `marvel` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `mascotegame` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `masturbation` | AnnaV6-Ultra | 1 | requer esclarecimento |
-| `mata` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `matar` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `matrix` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `mediafire` | AnnaV6-Ultra, Kokushibot, zagan | 6 | requer esclarecimento |
 | `megadl` | AnnaV6-Ultra | 1 | requer esclarecimento |
@@ -901,23 +941,11 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `memesvid` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `mencionar` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `menu1` | AnnaV6-Ultra | 1 | requer esclarecimento |
-| `menu10` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `menu18` | AnnaV6-Ultra, succubus-bot | 2 | requer esclarecimento |
-| `menu2` | AnnaV6-Ultra, succubus-bot | 2 | requer esclarecimento |
-| `menu3` | AnnaV6-Ultra, succubus-bot | 2 | requer esclarecimento |
-| `menu4` | AnnaV6-Ultra, succubus-bot | 2 | requer esclarecimento |
-| `menu5` | AnnaV6-Ultra, succubus-bot | 2 | requer esclarecimento |
-| `menu6` | AnnaV6-Ultra, succubus-bot | 2 | requer esclarecimento |
-| `menu7` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `menu8` | AnnaV6-Ultra | 1 | requer esclarecimento |
-| `menu9` | AnnaV6-Ultra | 1 | requer esclarecimento |
-| `menuadm` | AnnaV6-Ultra, Kokushibot, succubus-bot, zagan | 4 | requer esclarecimento |
-| `menuadms` | AnnaV6-Ultra, zagan | 2 | requer esclarecimento |
 | `menuanime` | Kokushibot | 1 | requer esclarecimento |
 | `menuc` | zagan | 1 | requer esclarecimento |
-| `menucoins` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `menucompleto` | succubus-bot | 1 | requer esclarecimento |
-| `menudono` | AnnaV6-Ultra, Kokushibot, succubus-bot, zagan | 4 | requer esclarecimento |
 | `menudownload` | Kokushibot | 1 | requer esclarecimento |
 | `menuefeitos` | Kokushibot | 1 | requer esclarecimento |
 | `menufig` | Kokushibot | 1 | requer esclarecimento |
@@ -925,7 +953,6 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `menufigurinhas` | Kokushibot | 1 | requer esclarecimento |
 | `menujogos` | succubus-bot | 1 | requer esclarecimento |
 | `menulinks` | Kokushibot | 1 | requer esclarecimento |
-| `menulogo` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `menup` | zagan | 1 | requer esclarecimento |
 | `menupremium` | Kokushibot, zagan | 2 | requer esclarecimento |
 | `menusabcity` | Kokushibot | 1 | requer esclarecimento |
@@ -962,8 +989,6 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `modojogos` | succubus-bot | 1 | requer esclarecimento |
 | `modorent` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `modorgp` | Kokushibot | 1 | requer esclarecimento |
-| `moeda` | zagan | 1 | requer esclarecimento |
-| `moedas` | zagan | 1 | requer esclarecimento |
 | `morechat` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `morte` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `morto` | Kokushibot, zagan | 2 | requer esclarecimento |
@@ -982,7 +1007,6 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `narutologo` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `nasa` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `natal` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
-| `nazista` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `neko` | succubus-bot | 1 | requer esclarecimento |
 | `neko2` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `nekos` | AnnaV6-Ultra | 1 | requer esclarecimento |
@@ -1005,9 +1029,6 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `nome-bot` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `nome2` | AnnaV6-Ultra, succubus-bot | 2 | requer esclarecimento |
 | `nome_mae` | succubus-bot | 1 | requer esclarecimento |
-| `nomegp` | AnnaV6-Ultra, Kokushibot, succubus-bot, zagan | 7 | requer esclarecimento |
-| `nota` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `notas` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `noticiaesp` | zagan | 1 | requer esclarecimento |
 | `noticiaesporte` | zagan | 1 | requer esclarecimento |
 | `noticiasesp` | zagan | 1 | requer esclarecimento |
@@ -1038,7 +1059,6 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `patente` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `pediremnamoro` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `pensador` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
-| `pergunta` | AnnaV6-Ultra, zagan | 2 | requer esclarecimento |
 | `pesquisa` | Kokushibot, zagan | 2 | requer esclarecimento |
 | `pesquisa-ytb` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `pesquisar` | zagan | 1 | requer esclarecimento |
@@ -1052,7 +1072,6 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `pinterestdl` | Kokushibot | 1 | requer esclarecimento |
 | `pinterestmp4` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `pix` | AnnaV6-Ultra | 1 | requer esclarecimento |
-| `pixelate` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `placa` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `plaq` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `plaq1` | AnnaV6-Ultra | 1 | requer esclarecimento |
@@ -1183,7 +1202,6 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `recusar` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `redacao` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `registrar` | Kokushibot | 1 | requer esclarecimento |
-| `regras` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `regraspp` | zagan | 1 | requer esclarecimento |
 | `reiniciar` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `reivindicar` | Kokushibot | 1 | requer esclarecimento |
@@ -1233,11 +1251,9 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `rm_avisos` | Kokushibot, zagan | 2 | requer esclarecimento |
 | `rm_ddd` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `rmads` | AnnaV6-Ultra | 1 | requer esclarecimento |
-| `rmadv` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `rmaluguel` | zagan | 1 | requer esclarecimento |
 | `rmfotogroup` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `rmlevel` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
-| `rmnota` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `rmpalavra_f` | Kokushibot, zagan | 2 | requer esclarecimento |
 | `rmpalavra_forca` | Kokushibot, zagan | 2 | requer esclarecimento |
 | `rmphotogp` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
@@ -1250,7 +1266,6 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `roletarussa` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `roll` | zagan | 1 | requer esclarecimento |
 | `romantic` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
-| `rotate` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `roubar` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `rpglistgp` | Kokushibot | 1 | requer esclarecimento |
 | `rv` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
@@ -1264,20 +1279,17 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `sairptmcity` | Kokushibot | 1 | requer esclarecimento |
 | `sairsc` | Kokushibot | 1 | requer esclarecimento |
 | `sairtinder` | Kokushibot | 1 | requer esclarecimento |
-| `saldo` | Kokushibot | 1 | requer esclarecimento |
 | `samong` | Kokushibot | 1 | requer esclarecimento |
 | `sanime` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `sat` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `savegp` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `scdl` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
-| `scep` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `score` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `screenshots` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `screenshotweb` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `semoji` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `semprefixo` | Kokushibot | 1 | requer esclarecimento |
 | `sender` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `sepia` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `seradm` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `sermembro` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `serprem` | zagan | 1 | requer esclarecimento |
@@ -1293,19 +1305,15 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `setpix` | Kokushibot | 1 | requer esclarecimento |
 | `setprefix` | AnnaV6-Ultra, Kokushibot, zagan | 5 | requer esclarecimento |
 | `setprefixs` | zagan | 1 | requer esclarecimento |
-| `sfundo` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `shadow` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `shazam` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `shipo` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `sigma` | AnnaV6-Ultra | 1 | requer esclarecimento |
-| `signo` | AnnaV6-Ultra, Kokushibot, zagan | 4 | requer esclarecimento |
 | `simi` | AnnaV6-Ultra, zagan | 2 | requer esclarecimento |
 | `simih` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `simih2` | Kokushibot, zagan | 2 | requer esclarecimento |
 | `sip` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `sistemgold` | zagan | 1 | requer esclarecimento |
 | `site` | AnnaV6-Ultra | 1 | requer esclarecimento |
-| `slot` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `slow` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `slowvid` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `smoke` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
@@ -1314,7 +1322,6 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `soltar` | Kokushibot | 1 | requer esclarecimento |
 | `sopk` | Kokushibot | 1 | requer esclarecimento |
 | `sortcoins` | AnnaV6-Ultra | 1 | requer esclarecimento |
-| `sorteio` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `sorteiocoins` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `sorteionumero` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `sorteionumeros` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
@@ -1327,7 +1334,6 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `springtrap` | Kokushibot | 1 | requer esclarecimento |
 | `sqlcode` | succubus-bot | 1 | requer esclarecimento |
 | `ssweb` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
-| `st` | AnnaV6-Ultra, succubus-bot, zagan | 3 | requer esclarecimento |
 | `stalkff` | Kokushibot | 1 | requer esclarecimento |
 | `stalkig` | Kokushibot | 1 | requer esclarecimento |
 | `stalkml` | Kokushibot | 1 | requer esclarecimento |
@@ -1354,7 +1360,6 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `tabelagp` | zagan | 1 | requer esclarecimento |
 | `tabelinha` | zagan | 1 | requer esclarecimento |
 | `take` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `tapa` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `telefone` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `tempocmd` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `tentacle` | succubus-bot | 1 | requer esclarecimento |
@@ -1389,7 +1394,6 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `tindernome` | Kokushibot | 1 | requer esclarecimento |
 | `tinyurl` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `tirar_docnt` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `tirar_nota` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `tirar_prefixo` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `tirarcmdpremium` | zagan | 1 | requer esclarecimento |
 | `tirardalista` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
@@ -1403,12 +1407,10 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `tksh` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `toanime` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `tocar_playlist` | succubus-bot | 1 | requer esclarecimento |
-| `togif` | AnnaV6-Ultra, Kokushibot, zagan | 4 | requer esclarecimento |
 | `togta` | AnnaV6-Ultra | 1 | requer esclarecimento |
 | `token_gpt` | zagan | 1 | requer esclarecimento |
 | `tomp3url` | Kokushibot | 1 | requer esclarecimento |
 | `tomp4url` | Kokushibot | 1 | requer esclarecimento |
-| `totag` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `totalcmd` | Kokushibot, zagan | 2 | requer esclarecimento |
 | `totalcomando` | zagan | 1 | requer esclarecimento |
 | `tourl` | Kokushibot | 1 | requer esclarecimento |
@@ -1448,7 +1450,6 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `unblockcmdgp` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `unblocklevel` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `unblockuser` | AnnaV6-Ultra | 1 | requer esclarecimento |
-| `unkick` | AnnaV6-Ultra, Kokushibot | 2 | requer esclarecimento |
 | `upcavalo` | Kokushibot | 1 | requer esclarecimento |
 | `upgalo` | Kokushibot | 1 | requer esclarecimento |
 | `upload` | zagan | 1 | requer esclarecimento |
@@ -1467,7 +1468,6 @@ Os nomes abaixo foram detectados, mas o nome isolado não é suficiente para sab
 | `ver_forca` | Kokushibot, zagan | 2 | requer esclarecimento |
 | `ver_playlist` | succubus-bot | 1 | requer esclarecimento |
 | `verificado-global` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
-| `vesgo` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `video18` | succubus-bot | 1 | requer esclarecimento |
 | `videocontrario` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |
 | `videolento` | AnnaV6-Ultra, Kokushibot, zagan | 3 | requer esclarecimento |

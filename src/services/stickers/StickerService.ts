@@ -7,4 +7,8 @@ export class StickerService {
       .webp({ quality: 90 })
       .toBuffer();
   }
+
+  public async toImage(input: Buffer): Promise<Buffer> {
+    return sharp(input).png().toBuffer();
+  }
 }

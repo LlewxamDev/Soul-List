@@ -82,6 +82,12 @@ export function createCommandContext(input: CreateCommandContextInput) {
     async sendText(text: string) {
       await input.socket.sendMessage(targetJid, { text }, quoted);
     },
+    async deleteMessage(message: WAMessage) {
+      await input.socket.sendMessage(targetJid, { delete: message.key });
+    },
+    async sendMentionedText(text: string, mentions: string[]) {
+      await input.socket.sendMessage(targetJid, { text, mentions }, quoted);
+    },
     async sendImage(image: Buffer | string, caption?: string) {
       await input.socket.sendMessage(
         targetJid,
@@ -105,6 +111,18 @@ export function createCommandContext(input: CreateCommandContextInput) {
         {
           video: toMediaUpload(video),
           ...(caption ? { caption } : {})
+        },
+        quoted
+      );
+    },
+    async sendAnimation(video: Buffer | string, caption: string, mentions: string[]) {
+      await input.socket.sendMessage(
+        targetJid,
+        {
+          video: toMediaUpload(video),
+          gifPlayback: true,
+          caption,
+          mentions
         },
         quoted
       );

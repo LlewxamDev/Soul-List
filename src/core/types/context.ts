@@ -74,9 +74,12 @@ export interface CommandContext extends ParsedIncomingMessage {
   reply(text: string): Promise<void>;
   react(emoji: string): Promise<void>;
   sendText(text: string): Promise<void>;
+  deleteMessage(message: WAMessage): Promise<void>;
+  sendMentionedText(text: string, mentions: string[]): Promise<void>;
   sendImage(input: Buffer | string, caption?: string): Promise<void>;
   sendAudio(input: Buffer | string, ptt?: boolean): Promise<void>;
   sendVideo(input: Buffer | string, caption?: string): Promise<void>;
+  sendAnimation(input: Buffer | string, caption: string, mentions: string[]): Promise<void>;
   sendSticker(input: Buffer): Promise<void>;
   sendButtons(options: InteractiveButtonOptions): Promise<void>;
   sendList(options: InteractiveListOptions): Promise<void>;

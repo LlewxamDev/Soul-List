@@ -14,6 +14,11 @@ import {
   removeParticipantCommand,
   revokeGroupLinkCommand
 } from "./commands/groupActions";
+import { groupUtilitiesCommands } from "./commands/groupUtilities";
+import { groupFeatureCommands } from "./commands/groupFeatureCommands";
+import { noteCommands } from "./commands/noteCommands";
+import { groupMembershipCommands } from "./commands/groupMembership";
+import { warningCommands } from "./commands/warningCommands";
 
 const plugin: BotPlugin = {
   manifest: {
@@ -36,7 +41,12 @@ const plugin: BotPlugin = {
     promoteParticipantCommand,
     demoteParticipantCommand,
     groupLinkCommand,
-    revokeGroupLinkCommand
+    revokeGroupLinkCommand,
+    ...groupUtilitiesCommands,
+    ...groupFeatureCommands,
+    ...noteCommands,
+    ...groupMembershipCommands,
+    ...warningCommands
   ]
 };
 
