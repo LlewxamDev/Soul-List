@@ -38,12 +38,17 @@ export function createServices(env: AppEnv): BotServices {
     media: new MediaService(env),
     location: new LocationService(),
     imageEffects: new ImageEffectsService(),
-    ffmpeg: new FFmpegService(),
+    ffmpeg: new FFmpegService(env.ffmpegPath),
     stickers: new StickerService(),
     speech: new SpeechService(env.openAiApiKey),
     ai: new AIService(env.openAiApiKey, env.openAiModel, env.groqApiKey, env.groqModel, env.groqVisionModel),
     imageGeneration: new ImageGenerationService(env.openAiApiKey, env.imageGenerationModel),
     anime: new AnimeService(),
-    youtube: new YouTubeService(env.youtubeMaxDownloadBytes, env.youtubeMaxDurationSeconds)
+    youtube: new YouTubeService(
+      env.youtubeMaxDownloadBytes,
+      env.youtubeMaxDurationSeconds,
+      env.ytdlpPath,
+      env.ffmpegPath
+    )
   };
 }

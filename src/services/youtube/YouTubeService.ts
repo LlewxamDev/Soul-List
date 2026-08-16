@@ -1,10 +1,18 @@
-import youtubedl, { type Payload } from "youtube-dl-exec";
-import ytSearch, { type YtSearchVideo } from "yt-search";
+import { execFile } from "node:child_process";
 import { promises as fs } from "node:fs";
-import { dirname, join } from "node:path";
-import ffmpegStatic from "ffmpeg-static";
+import { promisify } from "node:util";
+import ytSearch, { type YtSearchVideo } from "yt-search";
+import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { randomUUID } from "node:crypto";
+
+const execFileAsync = promisify(execFile);
+const EXEC_BUFFER_BYTES = 32 * 1024 * 1024;
+
+type YtDlpPayload = {
+  duration?: number;
+  [key: string]: unknown;
+};
 
 export interface YouTubeVideoResult {
   id: string;
@@ -53,22 +61,72 @@ function normalizeSearchVideo(video: YtSearchVideo): YouTubeVideoResult {
   };
 }
 
-function ensurePayload(value: Payload | string): Payload {
-  if (typeof value === "string") {
+function ensurePayload(value: string): YtDlpPayload {
+  try {
+    const parsed: unknown = JSON.parse(value);
+    if (!parsed || typeof parsed !== "object") {
+      throw new Error("JSON não é um objeto.");
+    }
+    return parsed as YtDlpPayload;
+  } catch {
     throw new Error(`Resposta inesperada do yt-dlp: ${value.slice(0, 200)}`);
   }
-  return value;
 }
 
 function videoUrl(videoId: string): string {
   return `https://www.youtube.com/watch?v=${encodeURIComponent(videoId)}`;
 }
 
+function isMissingExecutable(error: unknown): boolean {
+  return Boolean(error && typeof error === "object" && "code" in error && error.code === "ENOENT");
+}
+
 export class YouTubeService {
   public constructor(
     private readonly maxBytes: number,
-    private readonly maxDurationSeconds: number
+    private readonly maxDurationSeconds: number,
+    private readonly ytdlpPath = "yt-dlp",
+    private readonly ffmpegPath = "ffmpeg"
   ) {}
+
+  private async runYtDlp(args: readonly string[], timeout = 180_000): Promise<string> {
+    const attempts: Array<{ file: string; args: string[] }> = [{
+      file: this.ytdlpPath,
+      args: [...args]
+    }];
+
+    if (this.ytdlpPath === "yt-dlp") {
+      attempts.push(
+        { file: "python3", args: ["-m", "yt_dlp", ...args] },
+        { file: "python", args: ["-m", "yt_dlp", ...args] }
+      );
+    }
+
+    let lastMissingExecutable = false;
+    for (const attempt of attempts) {
+      try {
+        const result = await execFileAsync(attempt.file, attempt.args, {
+          timeout,
+          maxBuffer: EXEC_BUFFER_BYTES,
+          windowsHide: true
+        });
+        return result.stdout;
+      } catch (error) {
+        if (isMissingExecutable(error)) {
+          lastMissingExecutable = true;
+          continue;
+        }
+        throw error;
+      }
+    }
+
+    if (lastMissingExecutable) {
+      throw new Error(
+        "yt-dlp não encontrado. Instale-o no Termux com `pkg install python ffmpeg && python -m pip install -U yt-dlp` ou defina YTDLP_PATH."
+      );
+    }
+    throw new Error("Não foi possível executar o yt-dlp.");
+  }
 
   public async search(query: string): Promise<YouTubeVideoResult | null> {
     const videoId = extractVideoId(query);
@@ -77,19 +135,25 @@ export class YouTubeService {
     return video ? normalizeSearchVideo(video) : null;
   }
 
-  private async getMetadata(videoId: string): Promise<Payload> {
-    const result = await youtubedl(videoUrl(videoId), {
-      dumpSingleJson: true,
-      skipDownload: true,
-      noWarnings: true,
-      noCheckCertificates: true,
-      noPlaylist: true,
-      preferFreeFormats: true,
-      jsRuntimes: "node",
-      remoteComponent: "ejs:npm",
-      addHeader: ["User-Agent: Mozilla/5.0", "Referer: https://www.youtube.com/"]
-    });
-    return ensurePayload(result);
+  private async getMetadata(videoId: string): Promise<YtDlpPayload> {
+    const output = await this.runYtDlp([
+      "--dump-single-json",
+      "--skip-download",
+      "--no-warnings",
+      "--no-check-certificates",
+      "--no-playlist",
+      "--prefer-free-formats",
+      "--js-runtimes",
+      "node",
+      "--remote-components",
+      "ejs:npm",
+      "--add-header",
+      "User-Agent: Mozilla/5.0",
+      "--add-header",
+      "Referer: https://www.youtube.com/",
+      videoUrl(videoId)
+    ], 60_000);
+    return ensurePayload(output);
   }
 
   private async findOutput(basePath: string): Promise<string> {
@@ -110,7 +174,8 @@ export class YouTubeService {
 
   public async download(videoId: string, type: "audio" | "video"): Promise<Buffer> {
     const metadata = await this.getMetadata(videoId);
-    if (metadata.duration > this.maxDurationSeconds) {
+    const duration = typeof metadata.duration === "number" ? metadata.duration : 0;
+    if (duration > this.maxDurationSeconds) {
       throw new Error(`O vídeo excede o limite de ${this.maxDurationSeconds} segundos.`);
     }
 
@@ -121,24 +186,34 @@ export class YouTubeService {
       ? "bestaudio[ext=m4a]/bestaudio"
       : "bestvideo[ext=mp4][height<=360]+bestaudio[ext=m4a]/bestvideo[height<=360]+bestaudio/best[ext=mp4]";
 
-    const flags = {
+    const args = [
+      "--format",
       format,
-      output: outputTemplate,
-      noWarnings: true,
-      noCheckCertificates: true,
-      noPlaylist: true,
-      noPart: true,
-      noProgress: true,
+      "--output",
+      outputTemplate,
+      "--no-warnings",
+      "--no-check-certificates",
+      "--no-playlist",
+      "--no-part",
+      "--no-progress",
+      "--max-filesize",
       maxFilesize,
-      jsRuntimes: "node" as const,
-      remoteComponent: "ejs:npm",
-      addHeader: ["User-Agent: Mozilla/5.0", "Referer: https://www.youtube.com/"],
-      ...(ffmpegStatic ? { ffmpegLocation: dirname(ffmpegStatic) } : {}),
-      ...(type === "video" ? { mergeOutputFormat: "mp4" } : {})
-    };
+      "--js-runtimes",
+      "node",
+      "--remote-components",
+      "ejs:npm",
+      "--add-header",
+      "User-Agent: Mozilla/5.0",
+      "--add-header",
+      "Referer: https://www.youtube.com/",
+      "--ffmpeg-location",
+      this.ffmpegPath,
+      ...(type === "video" ? ["--merge-output-format", "mp4"] : []),
+      videoUrl(videoId)
+    ];
 
     try {
-      await youtubedl.exec(videoUrl(videoId), flags, { timeout: 180_000 });
+      await this.runYtDlp(args);
 
       const outputPath = await this.findOutput(basePath);
       const output = await fs.readFile(outputPath);

@@ -20,6 +20,8 @@ const envSchema = z.object({
     .transform((value) => value === "true")
     .default("false"),
   PAIRING_NUMBER: z.string().default(""),
+  YTDLP_PATH: z.string().default("yt-dlp"),
+  FFMPEG_PATH: z.string().default("ffmpeg"),
   NEWS_API_KEY: z.string().default(""),
   WEATHER_API_KEY: z.string().default(""),
   OPENAI_API_KEY: z.string().default(""),
@@ -69,6 +71,8 @@ export const env = {
   logLevel: parsed.LOG_LEVEL,
   enableSensitiveCategories: parsed.ENABLE_SENSITIVE_CATEGORIES,
   pairingNumber: parsed.PAIRING_NUMBER,
+  ytdlpPath: parsed.YTDLP_PATH,
+  ffmpegPath: parsed.FFMPEG_PATH,
   newsApiKey: parsed.NEWS_API_KEY,
   weatherApiKey: parsed.WEATHER_API_KEY,
   openAiApiKey: parsed.OPENAI_API_KEY,

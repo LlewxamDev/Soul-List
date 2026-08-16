@@ -33,9 +33,9 @@ scripts/          build auxiliar e migracao
 
 - Node.js 20+
 - npm
-- Python 3.9+ para a instalação do binário yt-dlp via `youtube-dl-exec`
+- Python 3.9+ com o pacote `yt-dlp` instalado, ou o executável `yt-dlp` disponível no PATH
 - conexão de rede para o Baileys e para as integrações de pesquisa/download
-- FFmpeg, usado pelo `ffmpeg-static` e pelo merge de streams do `play`
+- FFmpeg disponível no PATH, usado pelo merge de streams do `play` e pelas transformações de mídia
 
 ## Instalacao
 
@@ -43,6 +43,16 @@ scripts/          build auxiliar e migracao
 npm install
 cp .env.example .env
 ```
+
+No Android via Termux, instale os executáveis de mídia antes de iniciar o bot:
+
+```bash
+pkg update
+pkg install nodejs python ffmpeg
+python -m pip install -U yt-dlp
+```
+
+O Soul-List usa `YTDLP_PATH=yt-dlp` e `FFMPEG_PATH=ffmpeg` por padrão. Caso os executáveis estejam em caminhos diferentes, defina esses valores no `.env`.
 
 Preencha ao menos:
 
@@ -85,7 +95,7 @@ As credenciais ficam em `SESSION_DIR`.
 
 ## Banco e persistencia
 
-O banco usa `SQLite` via `@libsql/client` com schema Drizzle em [src/database/schema.ts](/r:/Soul-List/src/database/schema.ts).
+O banco usa `SQLite` via `@libsql/client-wasm` com schema Drizzle em [src/database/schema.ts](/r:/Soul-List/src/database/schema.ts). O cliente WASM evita dependências nativas incompatíveis com Android. No Termux, mantenha o `DATABASE_URL` na raiz do projeto, por exemplo `./soul-list.db`.
 
 Entidades base:
 

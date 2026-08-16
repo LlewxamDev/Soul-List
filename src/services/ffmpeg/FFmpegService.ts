@@ -1,15 +1,14 @@
 import ffmpeg from "fluent-ffmpeg";
-import ffmpegStatic from "ffmpeg-static";
 import { promises as fs } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { randomUUID } from "node:crypto";
 
-if (ffmpegStatic) {
-  ffmpeg.setFfmpegPath(ffmpegStatic);
-}
-
 export class FFmpegService {
+  public constructor(private readonly ffmpegPath = "ffmpeg") {
+    ffmpeg.setFfmpegPath(this.ffmpegPath);
+  }
+
   private async runTransform(input: Buffer, outputExtension: string, configure: (command: ffmpeg.FfmpegCommand) => void) {
     const inputPath = join(tmpdir(), `${randomUUID()}.bin`);
     const outputPath = join(tmpdir(), `${randomUUID()}.${outputExtension}`);
