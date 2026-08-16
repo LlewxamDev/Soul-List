@@ -88,12 +88,13 @@ export function createCommandContext(input: CreateCommandContextInput) {
     async sendMentionedText(text: string, mentions: string[]) {
       await input.socket.sendMessage(targetJid, { text, mentions }, quoted);
     },
-    async sendImage(image: Buffer | string, caption?: string) {
+    async sendImage(image: Buffer | string, caption?: string, mentions: string[] = []) {
       await input.socket.sendMessage(
         targetJid,
         {
           image: toMediaUpload(image),
-          ...(caption ? { caption } : {})
+          ...(caption ? { caption } : {}),
+          ...(mentions.length > 0 ? { mentions } : {})
         },
         quoted
       );
@@ -105,12 +106,13 @@ export function createCommandContext(input: CreateCommandContextInput) {
         quoted
       );
     },
-    async sendVideo(video: Buffer | string, caption?: string) {
+    async sendVideo(video: Buffer | string, caption?: string, mentions: string[] = []) {
       await input.socket.sendMessage(
         targetJid,
         {
           video: toMediaUpload(video),
-          ...(caption ? { caption } : {})
+          ...(caption ? { caption } : {}),
+          ...(mentions.length > 0 ? { mentions } : {})
         },
         quoted
       );
@@ -130,16 +132,39 @@ export function createCommandContext(input: CreateCommandContextInput) {
     async sendSticker(sticker: Buffer) {
       await input.socket.sendMessage(targetJid, { sticker }, quoted);
     },
+    async sendDocument(document: Buffer | string, fileName: string, mimetype = "application/octet-stream", caption?: string) {
+      await input.socket.sendMessage(
+        targetJid,
+        {
+          document: toMediaUpload(document),
+          mimetype,
+          fileName,
+          ...(caption ? { caption } : {})
+        },
+        quoted
+      );
+    },
+    async sendPoll(name: string, values: string[], selectableCount = 1) {
+      await input.socket.sendMessage(
+        targetJid,
+        { poll: { name, values, selectableCount } },
+        quoted
+      );
+    },
     async sendButtons(options: InteractiveButtonOptions) {
+      const mediaContent = options.image
+        ? { image: toMediaUpload(options.image), caption: options.text, headerType: 4 }
+        : options.video
+          ? { video: toMediaUpload(options.video), caption: options.text, gifPlayback: true, headerType: 5 }
+          : { text: options.text, headerType: 1 };
       const content = {
-        ...(options.image ? { image: toMediaUpload(options.image), caption: options.text } : { text: options.text }),
+        ...mediaContent,
         ...(options.footer ? { footer: options.footer } : {}),
         buttons: options.buttons.map((button) => ({
           buttonId: button.id,
           buttonText: { displayText: button.text },
           type: 1
         })),
-        headerType: options.image ? 4 : 1,
         viewOnce: true
       };
       await sendInteractive(content, buttonsFallback(options));

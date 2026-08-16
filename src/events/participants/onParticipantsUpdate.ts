@@ -1,5 +1,6 @@
 import type { BaileysEventMap, WASocket } from "@whiskeysockets/baileys";
 import type { AppRuntime } from "../../core/runtime/AppRuntime";
+import { renderGroupTemplate, templateKey, type GroupTemplate } from "../../core/utils/groupTemplates";
 
 function phone(jid: string): string {
   return jid.split("@")[0] ?? jid;
@@ -47,8 +48,24 @@ export async function onParticipantsUpdate(
 
   const names = participants.map((jid) => `@${phone(jid)}`).join(", ");
   const mentions = [...participants];
-  const text = update.action === "add"
+  const type = update.action === "add" ? "welcome" : "leave";
+  const template = await runtime.repositories.settings.getJson<GroupTemplate>(templateKey(groupId, type));
+  const fallback = update.action === "add"
     ? `Sejam bem-vindos ${names} ao grupo *${subject}*!`
     : `Até mais ${names}. A saída do grupo *${subject}* foi registrada.`;
-  await socket.sendMessage(groupId, { text, mentions });
+  const text = renderGroupTemplate(template, names, subject, fallback);
+
+  if (template?.media && welcomeEnabled) {
+    const media = Buffer.from(template.media.dataBase64, "base64");
+    if (template.media.kind === "image") {
+      await socket.sendMessage(groupId, { image: media, caption: text, mentions });
+    } else {
+      await socket.sendMessage(groupId, { video: media, gifPlayback: true, caption: text, mentions });
+    }
+    return;
+  }
+
+  if (textWelcomeEnabled || welcomeEnabled) {
+    await socket.sendMessage(groupId, { text, mentions });
+  }
 }

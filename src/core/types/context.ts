@@ -37,6 +37,7 @@ export interface InteractiveButtonOptions {
   text: string;
   footer?: string;
   image?: Buffer | string;
+  video?: Buffer | string;
   buttons: InteractiveButton[];
 }
 
@@ -76,11 +77,13 @@ export interface CommandContext extends ParsedIncomingMessage {
   sendText(text: string): Promise<void>;
   deleteMessage(message: WAMessage): Promise<void>;
   sendMentionedText(text: string, mentions: string[]): Promise<void>;
-  sendImage(input: Buffer | string, caption?: string): Promise<void>;
+  sendImage(input: Buffer | string, caption?: string, mentions?: string[]): Promise<void>;
   sendAudio(input: Buffer | string, ptt?: boolean): Promise<void>;
-  sendVideo(input: Buffer | string, caption?: string): Promise<void>;
+  sendVideo(input: Buffer | string, caption?: string, mentions?: string[]): Promise<void>;
   sendAnimation(input: Buffer | string, caption: string, mentions: string[]): Promise<void>;
   sendSticker(input: Buffer): Promise<void>;
+  sendDocument(input: Buffer | string, fileName: string, mimetype?: string, caption?: string): Promise<void>;
+  sendPoll(name: string, values: string[], selectableCount?: number): Promise<void>;
   sendButtons(options: InteractiveButtonOptions): Promise<void>;
   sendList(options: InteractiveListOptions): Promise<void>;
   downloadMedia(): Promise<Buffer | null>;

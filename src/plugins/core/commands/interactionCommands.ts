@@ -7,6 +7,7 @@ type PercentageSpec = {
   aliases?: string[];
   label: string;
   emoji: string;
+  rangeMessages?: [string, string, string];
 };
 
 type TargetInteractionSpec = {
@@ -39,10 +40,18 @@ function percentageCommand(spec: PercentageSpec): CommandModule {
       }
       const percentage = Math.floor(Math.random() * 101);
       const name = formatPhone(target);
-      await context.sendMentionedText(
-        `${spec.emoji} A chance de @${name} ser ${spec.label} é de *${percentage}%*.`,
-        [target]
-      );
+      const rangeMessages = spec.rangeMessages ?? [
+        "A brincadeira ficou bem baixa.",
+        "Resultado intermediário para entrar na zoeira.",
+        "Resultado alto; aproveite a brincadeira."
+      ];
+      const rangeMessage = percentage < 34 ? rangeMessages[0] : percentage < 67 ? rangeMessages[1] : rangeMessages[2];
+      const text = `${spec.emoji} @${name} tem *${percentage}%* de ${spec.label}.\n_${rangeMessage}_\n\nResultado aleatório de brincadeira; não é uma avaliação real.`;
+      if ((spec.name === "atraente" || spec.name === "lindo") && context.env.menuMediaUrl) {
+        await context.sendImage(context.env.menuMediaUrl, text, [target]);
+      } else {
+        await context.sendMentionedText(text, [target]);
+      }
     }
   };
 }
@@ -88,7 +97,32 @@ export const percentageInteractionCommands: CommandModule[] = [
   percentageCommand({ name: "louca", label: "louca", emoji: "🤪" }),
   percentageCommand({ name: "macaco", label: "macaco", emoji: "🐒" }),
   percentageCommand({ name: "macaca", label: "macaca", emoji: "🐒" }),
-  percentageCommand({ name: "nazista", label: "nazista", emoji: "⚠️" })
+  percentageCommand({ name: "nazista", label: "nazista", emoji: "⚠️" }),
+  percentageCommand({
+    name: "atraente",
+    label: "atraente",
+    emoji: "✨",
+    rangeMessages: ["A beleza ficou tímida hoje.", "Um resultado equilibrado.", "O personagem bonito do grupo apareceu."]
+  }),
+  percentageCommand({
+    name: "lindo",
+    label: "lindo",
+    emoji: "🌟",
+    rangeMessages: ["Hoje é dia de melhorar o visual.", "Tem charme, mas sem exagerar.", "Resultado de protagonista de anime."]
+  }),
+  percentageCommand({
+    name: "fiel",
+    label: "fiel",
+    emoji: "💍",
+    rangeMessages: ["A zoeira levantou suspeitas fictícias.", "O resultado ficou inconclusivo.", "A brincadeira deu um voto de confiança."]
+  }),
+  percentageCommand({
+    name: "lesbica",
+    aliases: ["lesbico"],
+    label: "lésbica",
+    emoji: "🏳️‍🌈",
+    rangeMessages: ["Resultado baixo, sempre no campo da brincadeira.", "A porcentagem ficou no meio-termo.", "Resultado alto, sem qualquer valor sobre a vida real."]
+  })
 ];
 
 export const targetInteractionCommands: CommandModule[] = [

@@ -11,4 +11,11 @@ export class StickerService {
   public async toImage(input: Buffer): Promise<Buffer> {
     return sharp(input).png().toBuffer();
   }
+
+  public async withMetadata(input: Buffer, description: string): Promise<Buffer> {
+    return sharp(input)
+      .withMetadata({ exif: { IFD0: { ImageDescription: description } } })
+      .webp({ quality: 90 })
+      .toBuffer();
+  }
 }

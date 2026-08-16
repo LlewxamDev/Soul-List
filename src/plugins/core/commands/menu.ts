@@ -59,7 +59,7 @@ export const menuCommand: CommandModule = {
     const prefix = context.prefix ?? context.env.defaultPrefix;
 
     if (!first) {
-      await context.sendButtons(interactiveBuilder.buildHome(context));
+      await context.sendButtons(await interactiveBuilder.buildHome(context));
       return;
     }
 

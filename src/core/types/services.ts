@@ -1,4 +1,5 @@
 import type { AIService } from "../../services/ai/AIService";
+import type { ImageGenerationService } from "../../services/ai/ImageGenerationService";
 import type { AnimeService } from "../../services/anime/AnimeService";
 import type { BookService } from "../../services/books/BookService";
 import type { CacheService } from "../../services/cache/CacheService";
@@ -38,6 +39,7 @@ export interface BotServices {
   stickers: StickerService;
   speech: SpeechService;
   ai: AIService;
+  imageGeneration: ImageGenerationService;
   anime: AnimeService;
   youtube: YouTubeService;
 }

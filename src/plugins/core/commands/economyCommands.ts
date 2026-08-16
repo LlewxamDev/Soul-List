@@ -3,7 +3,7 @@ import type { CommandModule } from "../../../core/types/command";
 export const balanceCommand: CommandModule = {
   definition: {
     name: "coins",
-    aliases: ["saldo", "estatisticas", "estatística", "moedas"],
+    aliases: ["saldo", "estatisticas", "estatística", "moedas", "carteira"],
     description: "Mostra o saldo de moedas e XP do usuário.",
     usage: "!coins",
     category: "fun",
@@ -11,7 +11,7 @@ export const balanceCommand: CommandModule = {
   },
   async execute(context) {
     const record = await context.repositories.economy.get(context.sender);
-    await context.reply(`Saldo: *${record?.balance ?? 0}* N-Coins\nXP: *${record?.xp ?? 0}*\nNível: *${record?.level ?? 1}*`);
+    await context.reply(`Saldo: *${record?.balance ?? 0}* N-Coins/gold\nXP: *${record?.xp ?? 0}*\nNível: *${record?.level ?? 1}*`);
   }
 };
 

@@ -17,8 +17,14 @@ function commandPrefix(context: CommandContext): string {
 }
 
 export class InteractiveMenuBuilder {
-  public buildHome(context: CommandContext): InteractiveButtonOptions {
+  public async buildHome(context: CommandContext): Promise<InteractiveButtonOptions> {
     const prefix = commandPrefix(context);
+    const persisted = await context.repositories.settings.getJson<{
+      kind: "image" | "video";
+      dataBase64: string;
+      mimetype: string;
+    }>("menu:media");
+    const media = persisted?.dataBase64 ? Buffer.from(persisted.dataBase64, "base64") : undefined;
     return {
       text: [
         `╭─ ${context.env.botName}`,
@@ -27,7 +33,13 @@ export class InteractiveMenuBuilder {
         `╰ Prefixo ativo: ${prefix}`
       ].join("\n"),
       footer: "Soul-List · menu interativo",
-      ...(context.env.menuMediaUrl ? { image: context.env.menuMediaUrl } : {}),
+      ...(media && persisted?.kind === "video"
+        ? { video: media }
+        : media
+          ? { image: media }
+          : context.env.menuMediaUrl
+            ? { image: context.env.menuMediaUrl }
+            : {}),
       buttons: [{ id: `${prefix}menu categorias`, text: "ABRIR MENUS" }]
     };
   }

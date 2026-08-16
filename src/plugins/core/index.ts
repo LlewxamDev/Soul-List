@@ -38,8 +38,15 @@ import { cepCommand } from "./commands/locationCommands";
 import { mediaConversionCommands } from "./commands/mediaConversions";
 import { economyCommands } from "./commands/economyCommands";
 import { aiQuestionCommand } from "./commands/aiCommands";
+import { aiImageCommand } from "./commands/aiImage";
 import { zodiacCommand } from "./commands/zodiac";
 import { imageEffectCommands } from "./commands/imageEffects";
+import { rpgCommands } from "./commands/rpgCommands";
+import { binaryCommand } from "./commands/encoding";
+import { syntheticIdCommands } from "./commands/syntheticIds";
+import { pollCommand } from "./commands/poll";
+import { publicMediaCommands } from "./commands/publicMedia";
+import { userInfoCommand } from "./commands/userInfo";
 
 const plugin: BotPlugin = {
   manifest: {
@@ -87,8 +94,15 @@ const plugin: BotPlugin = {
     ...mediaConversionCommands,
     ...economyCommands,
     aiQuestionCommand,
+    aiImageCommand,
     zodiacCommand,
-    ...imageEffectCommands
+    ...imageEffectCommands,
+    ...rpgCommands,
+    binaryCommand,
+    ...syntheticIdCommands,
+    pollCommand,
+    ...publicMediaCommands,
+    userInfoCommand
   ]
 };
 

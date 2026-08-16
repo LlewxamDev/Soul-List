@@ -2,6 +2,7 @@ import type { BotPlugin } from "../../core/types/plugin";
 import { healthCommand } from "./commands/health";
 import { pluginsCommand } from "./commands/plugins";
 import { setPremiumCommand } from "./commands/setpremium";
+import { menuMediaCommand } from "./commands/menuMedia";
 
 const plugin: BotPlugin = {
   manifest: {
@@ -11,7 +12,7 @@ const plugin: BotPlugin = {
     enabledByDefault: true,
     categories: ["owner"]
   },
-  commands: [pluginsCommand, healthCommand, setPremiumCommand]
+  commands: [pluginsCommand, healthCommand, setPremiumCommand, menuMediaCommand]
 };
 
 export default plugin;

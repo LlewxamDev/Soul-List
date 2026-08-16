@@ -1,0 +1,57 @@
+{
+  "resolved": [
+    "aiimg",
+    "atraente",
+    "bin",
+    "carteira",
+    "cnpj",
+    "compras",
+    "cpf",
+    "enquete",
+    "fiel",
+    "figurandom",
+    "figvideo",
+    "fotogp",
+    "fotomenu",
+    "fundobemvindo",
+    "fundobv",
+    "fundosaiu",
+    "get",
+    "grave",
+    "iddogrupo",
+    "idgrupo",
+    "imgpralink",
+    "lesbica",
+    "lesbico",
+    "lindo",
+    "lojas",
+    "parentes",
+    "rg",
+    "upload",
+    "user",
+    "wanted",
+    "wasted"
+  ],
+  "removed": [
+    "artist",
+    "beneficios",
+    "enviar",
+    "figuanime2",
+    "figucoreanas2",
+    "figumemes2",
+    "fundolevel",
+    "fundomenu",
+    "igdl",
+    "lojadecavalos",
+    "lojadegalos",
+    "mostrar_forca",
+    "score",
+    "trash"
+  ],
+  "pendingProductDecision": [
+    "jail"
+  ],
+  "interestingUnknown": [
+    "track"
+  ]
+}

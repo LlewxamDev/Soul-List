@@ -1,6 +1,7 @@
 import type { AppEnv } from "../config/env";
 import type { BotServices } from "../core/types/services";
 import { AIService } from "./ai/AIService";
+import { ImageGenerationService } from "./ai/ImageGenerationService";
 import { AnimeService } from "./anime/AnimeService";
 import { BookService } from "./books/BookService";
 import { CacheService } from "./cache/CacheService";
@@ -41,6 +42,7 @@ export function createServices(env: AppEnv): BotServices {
     stickers: new StickerService(),
     speech: new SpeechService(env.openAiApiKey),
     ai: new AIService(env.openAiApiKey, env.openAiModel),
+    imageGeneration: new ImageGenerationService(env.openAiApiKey, env.imageGenerationModel),
     anime: new AnimeService(),
     youtube: new YouTubeService(env.youtubeMaxDownloadBytes, env.youtubeMaxDurationSeconds)
   };

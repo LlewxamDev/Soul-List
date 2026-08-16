@@ -50,7 +50,7 @@ Preencha ao menos:
 - `BOT_OWNER_NUMBER`
 - `BOT_OWNER_NUMBERS`
 - `PREFIX` / `PREFIXES`
-- opcionalmente `MENU_MEDIA_URL`, `YOUTUBE_MAX_DOWNLOAD_MB` e `YOUTUBE_MAX_DURATION_SECONDS`
+- opcionalmente `MENU_MEDIA_URL`, `IMAGE_GENERATION_MODEL`, `IMAGE_UPLOAD_URL`, `IMAGE_UPLOAD_TOKEN`, `MAX_REMOTE_DOWNLOAD_MB`, `REMOTE_DOWNLOAD_TIMEOUT_SECONDS`, `YOUTUBE_MAX_DOWNLOAD_MB` e `YOUTUBE_MAX_DURATION_SECONDS`
 
 ## Desenvolvimento
 
@@ -217,8 +217,9 @@ Isso evita HTTP espalhado em comando.
 
 ## Recursos que dependem de API
 
-- `totext`: precisa de `OPENAI_API_KEY`
-- comandos de IA futuros: precisam de `OPENAI_API_KEY`
+- `totext`, `user` e `aiimg`: precisam de `OPENAI_API_KEY`; `aiimg` também usa `IMAGE_GENERATION_MODEL`
+- `imgpralink`: precisa de `IMAGE_UPLOAD_URL` e opcionalmente `IMAGE_UPLOAD_TOKEN`
+- `upload`: aceita somente URLs HTTP/HTTPS públicas dentro dos limites `MAX_REMOTE_DOWNLOAD_MB` e `REMOTE_DOWNLOAD_TIMEOUT_SECONDS`
 - categoria sensivel: fica desativada por padrao por `ENABLE_SENSITIVE_CATEGORIES=false`
 
 ## Comandos base incluidos
@@ -228,7 +229,10 @@ Isso evita HTTP espalhado em comando.
 - `buscar`, `wikipedia`, `noticias`, `clima`, `livro`, `filme`, `serie`, `traduzir`, `playstore`
 - `play`, `printsite`, `sticker`, `totext`, `tomp3`, `videorapido`, `audiorapido`, `audiolento`, `audioreverso`, `bass`
 - `admins`, `tagall`, `warn`, `ban`, `unban`, `mute`, `open`, `close`, `kick`, `promote`, `demote`, `linkgroup`, `revoke`
-- `plugins`, `health`, `setpremium`
+- `plugins`, `health`, `setpremium`, `fotomenu`
+- utilidades novas: `aiimg`, `bin`, `cpf`, `cnpj`, `rg`, `enquete`, `upload`, `imgpralink`, `user`
+- RPG/economia: `carteira`, `lojas`, `compras`, `parentes`, `wanted`, `wasted`
+- grupo/stickers: `fotogp`, `fundobemvindo`, `fundosaiu`, `idgrupo`, `figurandom`, `get`, `figvideo`
 - placeholders de `downloads`, `logos`, `vip`, `rpg`, `games`, `sensitive`
 
 ## Validacao ja executada

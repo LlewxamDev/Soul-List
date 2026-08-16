@@ -19,6 +19,8 @@ import { groupFeatureCommands } from "./commands/groupFeatureCommands";
 import { noteCommands } from "./commands/noteCommands";
 import { groupMembershipCommands } from "./commands/groupMembership";
 import { warningCommands } from "./commands/warningCommands";
+import { groupMediaConfigurationCommands } from "./commands/groupMediaConfiguration";
+import { groupIdCommand } from "./commands/groupIdentity";
 
 const plugin: BotPlugin = {
   manifest: {
@@ -46,7 +48,9 @@ const plugin: BotPlugin = {
     ...groupFeatureCommands,
     ...noteCommands,
     ...groupMembershipCommands,
-    ...warningCommands
+    ...warningCommands,
+    ...groupMediaConfigurationCommands,
+    groupIdCommand
   ]
 };
 

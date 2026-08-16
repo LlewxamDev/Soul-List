@@ -22,4 +22,20 @@ export class SettingsRepository {
 
     return result?.value ?? null;
   }
+
+  public async setJson<T>(key: string, value: T): Promise<void> {
+    await this.set(key, JSON.stringify(value));
+  }
+
+  public async getJson<T>(key: string): Promise<T | null> {
+    const value = await this.get(key);
+    if (!value) {
+      return null;
+    }
+    try {
+      return JSON.parse(value) as T;
+    } catch {
+      return null;
+    }
+  }
 }

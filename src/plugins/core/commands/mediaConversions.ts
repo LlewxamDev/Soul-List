@@ -27,7 +27,7 @@ export const toImageCommand: CommandModule = {
 export const toGifCommand: CommandModule = {
   definition: {
     name: "togif",
-    aliases: ["gif", "stickeranimado"],
+    aliases: ["gif", "stickeranimado", "figvideo"],
     description: "Converte uma mídia animada em vídeo GIF para o WhatsApp.",
     usage: "!togif (respondendo a uma figurinha animada ou vídeo)",
     category: "media",
