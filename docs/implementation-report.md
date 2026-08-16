@@ -60,7 +60,7 @@ Mensagens legadas de botão e lista dependem do cliente WhatsApp e da versão do
 
 A lista de 1.416 comandos ambíguos não foi transformada em placeholders executáveis. Isso evita criar comandos com significado errado, chamar APIs desconhecidas ou incluir comportamentos que dependam de serviços abandonados. A próxima rodada deve comparar os handlers concretos e esclarecer os conflitos em lotes, começando por administração, downloads, mídia, jogos e brincadeiras.
 
-A branch foi preparada para revisão local. O código não foi publicado nem empurrado para o repositório remoto durante esta execução.
+A branch foi preparada e enviada ao repositório privado para revisão: `feat/reference-command-expansion`. A branch principal permaneceu intacta; nenhum pull request foi criado automaticamente.
 
 ## Referências técnicas
 
