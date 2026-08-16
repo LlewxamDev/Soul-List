@@ -3,7 +3,7 @@ import type { CommandModule } from "../../../core/types/command";
 export const closeCommand: CommandModule = {
   definition: {
     name: "close",
-    aliases: [],
+    aliases: ["fechargp", "fechargrupo", "grupofechado"],
     description: "Fecha o grupo para mensagens comuns.",
     usage: "!close",
     category: "admin",

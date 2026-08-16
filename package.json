@@ -10,7 +10,8 @@
     "start": "node dist/src/index.js",
     "typecheck": "tsc --noEmit",
     "db:generate": "drizzle-kit generate",
-    "db:migrate": "tsx scripts/migrate.ts"
+    "db:migrate": "tsx scripts/migrate.ts",
+    "media:serve": "tsx scripts/serve-public-media.ts"
   },
   "keywords": [
     "whatsapp",

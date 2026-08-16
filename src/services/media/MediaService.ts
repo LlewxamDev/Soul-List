@@ -1,5 +1,8 @@
 import { lookup } from "node:dns/promises";
 import { isIP } from "node:net";
+import { promises as fs } from "node:fs";
+import { randomUUID } from "node:crypto";
+import { resolve, join } from "node:path";
 import { downloadMediaMessage, type WAMessage } from "@whiskeysockets/baileys";
 import pino from "pino";
 import type { AppEnv } from "../../config/env";
@@ -175,7 +178,16 @@ export class MediaService {
 
   public async uploadPublic(data: Buffer, fileName: string, mimeType: string): Promise<string> {
     if (!this.env.imageUploadUrl) {
-      throw new Error("IMAGE_UPLOAD_URL não configurada para upload público.");
+      const directory = resolve(this.env.publicMediaDir);
+      await fs.mkdir(directory, { recursive: true });
+      const storedName = `${randomUUID()}-${safeFileName(fileName)}`;
+      const target = join(directory, storedName);
+      await fs.writeFile(target, data);
+      if (!this.env.publicMediaBaseUrl) {
+        return `file://${target}`;
+      }
+      const baseUrl = this.env.publicMediaBaseUrl.endsWith("/") ? this.env.publicMediaBaseUrl : `${this.env.publicMediaBaseUrl}/`;
+      return `${baseUrl}${encodeURIComponent(storedName)}`;
     }
     const form = new FormData();
     form.append("file", new Blob([data], { type: mimeType }), safeFileName(fileName));

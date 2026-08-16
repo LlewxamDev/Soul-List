@@ -1,5 +1,3 @@
-# Desconhecido interessante
+# Comando anteriormente interessante — resolvido
 
-## `track`
-
-`track` não recebeu comportamento arbitrário, não foi removido definitivamente e permanece documentado para investigação posterior. Os handlers de referência continuam preservados no inventário.
+`track` foi implementado como rastreamento ficcional de um alvo dentro do RPG medieval. O comando consulta somente os estados persistidos de procurado, prisão e cargo, e não consulta GPS, localização, presença, atividade ou qualquer dado real do WhatsApp.

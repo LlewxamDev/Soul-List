@@ -52,7 +52,7 @@ function configureTemplate(type: "welcome" | "leave", label: string): CommandMod
   return {
     definition: {
       name: type === "welcome" ? "fundobemvindo" : "fundosaiu",
-      aliases: type === "welcome" ? ["fundobv", "welcomeconfig"] : ["fundosaida", "leaveconfig"],
+      aliases: type === "welcome" ? ["fundobv", "welcomeconfig", "legendabv", "legendabv2"] : ["fundosaida", "leaveconfig", "legendasaiu", "legendasaiu2"],
       description: `Configura a mensagem de ${label} do grupo.`,
       usage: type === "welcome" ? "!fundobemvindo <texto> (mídia opcional)" : "!fundosaiu <texto> (mídia opcional)",
       category: "admin",

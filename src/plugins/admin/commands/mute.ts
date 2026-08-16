@@ -2,10 +2,10 @@ import type { CommandModule } from "../../../core/types/command";
 
 export const muteCommand: CommandModule = {
   definition: {
-    name: "mute",
-    aliases: [],
+    name: "botsilencio",
+    aliases: ["mutesilencio", "silenciarbot"],
     description: "Liga ou desliga o modo silencioso do bot no grupo.",
-    usage: "!mute [on|off]",
+    usage: "!botsilencio [on|off]",
     category: "admin",
     cooldownSeconds: 5,
     adminOnly: true,

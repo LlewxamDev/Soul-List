@@ -41,7 +41,7 @@ export function createServices(env: AppEnv): BotServices {
     ffmpeg: new FFmpegService(),
     stickers: new StickerService(),
     speech: new SpeechService(env.openAiApiKey),
-    ai: new AIService(env.openAiApiKey, env.openAiModel),
+    ai: new AIService(env.openAiApiKey, env.openAiModel, env.groqApiKey, env.groqModel, env.groqVisionModel),
     imageGeneration: new ImageGenerationService(env.openAiApiKey, env.imageGenerationModel),
     anime: new AnimeService(),
     youtube: new YouTubeService(env.youtubeMaxDownloadBytes, env.youtubeMaxDurationSeconds)

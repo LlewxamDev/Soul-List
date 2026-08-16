@@ -92,7 +92,7 @@ export const hideTagCommand: CommandModule = {
 export const groupInfoCommand: CommandModule = {
   definition: {
     name: "grupoinfo",
-    aliases: ["infogrupo", "infogp", "gpinfo", "regras"],
+    aliases: ["infogrupo", "infogp", "gpinfo"],
     description: "Mostra informações e permissões do grupo.",
     usage: "!grupoinfo",
     category: "admin",

@@ -30,7 +30,7 @@ function toggleCommand(spec: ToggleSpec): CommandModule {
 }
 
 export const groupFeatureCommands: CommandModule[] = [
-  toggleCommand({ name: "antilink", aliases: ["antilinkhard"], feature: "antilink", label: "Anti-link" }),
+  toggleCommand({ name: "antilink", aliases: ["antilinkhard", "banlinkhard", "banlinkgp"], feature: "antilink", label: "Anti-link" }),
   toggleCommand({ name: "antilinkgp", aliases: [], feature: "antilink", label: "Anti-link de grupo" }),
   toggleCommand({ name: "antiimg", aliases: [], feature: "anti-image", label: "Anti-imagem" }),
   toggleCommand({ name: "antivideo", aliases: [], feature: "anti-video", label: "Anti-vídeo" }),
@@ -44,6 +44,12 @@ export const groupFeatureCommands: CommandModule[] = [
   toggleCommand({ name: "anticatalogo", aliases: ["anticatalg"], feature: "anti-catalog", label: "Anti-catálogo" }),
   toggleCommand({ name: "antipalavrao", aliases: ["antipalavra", "antipalavrão"], feature: "anti-bad-words", label: "Anti-palavrão" }),
   toggleCommand({ name: "bemvindo", aliases: ["welcome"], feature: "welcome", label: "Boas-vindas" }),
-  toggleCommand({ name: "bemvindo2", aliases: [], feature: "welcome-text", label: "Boas-vindas em texto" }),
-  toggleCommand({ name: "autosticker", aliases: ["autofigu"], feature: "auto-sticker", label: "Sticker automático" })
+  toggleCommand({ name: "bemvindo2", aliases: ["bemvindo3", "bemvindo4", "bemvindo5"], feature: "welcome-text", label: "Boas-vindas em texto" }),
+  toggleCommand({ name: "autosticker", aliases: ["autofigu"], feature: "auto-sticker", label: "Sticker automático" }),
+  toggleCommand({ name: "blockgp", aliases: ["bloqueiogrupo"], feature: "group-block", label: "Bloqueio de mensagens de membros" }),
+  toggleCommand({ name: "limiteflood", aliases: ["flood", "floodlimit"], feature: "flood-limit", label: "Limite de flood" }),
+  toggleCommand({ name: "autoresposta", aliases: ["autoreply", "respostaauto"], feature: "auto-reply", label: "Resposta automática" }),
+  toggleCommand({ name: "modozoeira", aliases: ["zoeira", "modo-brincadeira"], feature: "joke-mode", label: "Modo brincadeira" }),
+  toggleCommand({ name: "modorpg", aliases: ["rpgmode", "modo-rpg"], feature: "rpg-mode", label: "Modo RPG" }),
+  toggleCommand({ name: "leveling", aliases: ["level", "nivelamento"], feature: "leveling", label: "Leveling" })
 ];

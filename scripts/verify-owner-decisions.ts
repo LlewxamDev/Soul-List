@@ -9,7 +9,7 @@ const expected = [
 ];
 const forbidden = [
   "artist", "beneficios", "enviar", "figuanime2", "figucoreanas2", "figumemes2", "fundolevel", "fundomenu",
-  "igdl", "lojadecavalos", "lojadegalos", "mostrar_forca", "score", "trash", "jail", "track"
+  "igdl", "lojadecavalos", "lojadegalos", "mostrar_forca", "score", "trash"
 ];
 
 async function main(): Promise<void> {

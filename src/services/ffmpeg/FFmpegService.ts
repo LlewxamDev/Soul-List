@@ -70,6 +70,44 @@ export class FFmpegService {
     });
   }
 
+  public slowVideo(input: Buffer): Promise<Buffer> {
+    return this.runTransform(input, "mp4", (command) => {
+      command
+        .videoFilters("setpts=1.25*PTS")
+        .audioFilters("atempo=0.8")
+        .videoCodec("libx264")
+        .audioCodec("aac")
+        .format("mp4");
+    });
+  }
+
+  public reverseVideo(input: Buffer): Promise<Buffer> {
+    return this.runTransform(input, "mp4", (command) => {
+      command
+        .videoFilters("reverse")
+        .audioFilters("areverse")
+        .videoCodec("libx264")
+        .audioCodec("aac")
+        .format("mp4");
+    });
+  }
+
+  public muteVideo(input: Buffer): Promise<Buffer> {
+    return this.runTransform(input, "mp4", (command) => {
+      command.videoCodec("libx264").noAudio().format("mp4");
+    });
+  }
+
+  public bassVideo(input: Buffer): Promise<Buffer> {
+    return this.runTransform(input, "mp4", (command) => {
+      command
+        .audioFilters("bass=g=10")
+        .videoCodec("libx264")
+        .audioCodec("aac")
+        .format("mp4");
+    });
+  }
+
   public toAnimation(input: Buffer): Promise<Buffer> {
     return this.runTransform(input, "mp4", (command) => {
       command

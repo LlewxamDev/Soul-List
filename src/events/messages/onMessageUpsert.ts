@@ -28,6 +28,26 @@ async function enforceGroupFeatures(
     return false;
   }
 
+  const mutedUsers = await runtime.repositories.settings.getJson<string[]>(`group:${parsed.from}:muted-users`) ?? [];
+  const blacklistedUsers = await runtime.repositories.settings.getJson<string[]>(`group:${parsed.from}:blacklist`) ?? [];
+  const groupBlocked = await runtime.repositories.features.isEnabled("group-block", parsed.from);
+  if (blacklistedUsers.includes(parsed.sender)) {
+    try {
+      await socket.groupParticipantsUpdate(parsed.from, [parsed.sender], "remove");
+    } catch (error) {
+      runtime.logger.debug({ error }, "Não foi possível remover usuário da lista negra.");
+    }
+    return true;
+  }
+  if (mutedUsers.includes(parsed.sender) || groupBlocked) {
+    try {
+      await socket.sendMessage(parsed.from, { delete: message.key });
+    } catch (error) {
+      runtime.logger.debug({ error }, "Não foi possível apagar mensagem de usuário bloqueado.");
+    }
+    return true;
+  }
+
   const checks = [
     { feature: "antilink", matches: /(chat\.whatsapp\.com|wa\.me\/|whatsapp\.com\/)/i, label: "links de convite" },
     { feature: "anti-image", matches: parsed.media.hasImage, label: "imagens" },

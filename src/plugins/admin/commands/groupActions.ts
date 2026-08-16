@@ -76,7 +76,7 @@ export const groupLinkCommand: CommandModule = {
 export const revokeGroupLinkCommand: CommandModule = {
   definition: {
     name: "revoke",
-    aliases: ["revokelink", "resetlink"],
+    aliases: ["revokelink", "resetlink", "novolink"],
     description: "Revoga o link de convite atual e gera um novo.",
     usage: "!revoke",
     category: "admin",

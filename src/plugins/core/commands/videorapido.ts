@@ -3,7 +3,7 @@ import type { CommandModule } from "../../../core/types/command";
 export const fastVideoCommand: CommandModule = {
   definition: {
     name: "videorapido",
-    aliases: ["speedvideo", "fastvid"],
+    aliases: ["speedvideo", "fastvid", "fastvideo", "videofast", "rapido-video"],
     description: "Acelera um vídeo curto.",
     usage: "!videorapido (respondendo um vídeo)",
     category: "media",

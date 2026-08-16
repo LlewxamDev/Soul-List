@@ -4,7 +4,7 @@ import type { CommandModule } from "../../../core/types/command";
 export const warnCommand: CommandModule = {
   definition: {
     name: "advertir",
-    aliases: ["adverter", "warn"],
+    aliases: ["adverter", "warn", "adv"],
     description: "Adverte um participante; a terceira advertência remove o usuário.",
     usage: "!advertir @usuario",
     category: "moderation",

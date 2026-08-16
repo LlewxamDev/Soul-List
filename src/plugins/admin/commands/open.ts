@@ -3,7 +3,7 @@ import type { CommandModule } from "../../../core/types/command";
 export const openCommand: CommandModule = {
   definition: {
     name: "open",
-    aliases: [],
+    aliases: ["abrirgp", "abrirgrupo", "grupoaberto"],
     description: "Abre o grupo para envio de mensagens.",
     usage: "!open",
     category: "admin",

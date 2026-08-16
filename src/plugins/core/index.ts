@@ -47,6 +47,27 @@ import { syntheticIdCommands } from "./commands/syntheticIds";
 import { pollCommand } from "./commands/poll";
 import { publicMediaCommands } from "./commands/publicMedia";
 import { userInfoCommand } from "./commands/userInfo";
+import { infoExpansionCommands } from "./commands/infoExpansion";
+import { youtubeDirectCommands } from "./commands/youtubeDirect";
+import { videoTransformCommands } from "./commands/videoTransforms";
+import { stickerCreationCommands } from "./commands/stickerCreation";
+import { logoExpansionCommands } from "./commands/logoExpansion";
+import { gameExpansionCommands } from "./commands/gameExpansion";
+import { medievalRpgCommands } from "./commands/medievalRpg";
+import { trackCommand } from "./commands/rpgTrack";
+import { imageVisionCommands } from "./commands/imageVision";
+import { applyAliasExpansion } from "./commands/aliasExpansion";
+
+applyAliasExpansion([
+  menuCommand, listCommandsCommand, infoCommandCommand, infoBotCommand, pingCommand, profileCommand, statusCommand, afkCommand,
+  activeRankCommand, inactiveRankCommand, searchCommand, wikipediaCommand, newsCommand, weatherCommand, bookCommand, movieCommand,
+  seriesCommand, translateCommand, playStoreCommand, playCommand, printSiteCommand, stickerCommand, toTextCommand, toMp3Command,
+  fastAudioCommand, slowAudioCommand, reverseAudioCommand, bassAudioCommand, fastVideoCommand, animeInfoCommand, tagMeCommand,
+  ...interactionCommands, ...funUtilityCommands, cepCommand, ...mediaConversionCommands, ...economyCommands, aiQuestionCommand,
+  aiImageCommand, zodiacCommand, ...imageEffectCommands, ...rpgCommands, binaryCommand, ...syntheticIdCommands, pollCommand,
+  ...publicMediaCommands, userInfoCommand, ...infoExpansionCommands, ...youtubeDirectCommands, ...videoTransformCommands,
+  ...stickerCreationCommands, ...logoExpansionCommands, ...gameExpansionCommands, ...medievalRpgCommands, trackCommand, ...imageVisionCommands
+]);
 
 const plugin: BotPlugin = {
   manifest: {
@@ -102,7 +123,16 @@ const plugin: BotPlugin = {
     ...syntheticIdCommands,
     pollCommand,
     ...publicMediaCommands,
-    userInfoCommand
+    userInfoCommand,
+    ...infoExpansionCommands,
+    ...youtubeDirectCommands,
+    ...videoTransformCommands,
+    ...stickerCreationCommands,
+    ...logoExpansionCommands,
+    ...gameExpansionCommands,
+    ...medievalRpgCommands,
+    trackCommand,
+    ...imageVisionCommands
   ]
 };
 
