@@ -33,7 +33,9 @@ scripts/          build auxiliar e migracao
 
 - Node.js 20+
 - npm
-- FFmpeg opcional para comandos de midia mais pesados
+- Python 3.9+ para a instalação do binário yt-dlp via `youtube-dl-exec`
+- conexão de rede para o Baileys e para as integrações de pesquisa/download
+- FFmpeg, usado pelo `ffmpeg-static` e pelo merge de streams do `play`
 
 ## Instalacao
 
@@ -48,6 +50,7 @@ Preencha ao menos:
 - `BOT_OWNER_NUMBER`
 - `BOT_OWNER_NUMBERS`
 - `PREFIX` / `PREFIXES`
+- opcionalmente `MENU_MEDIA_URL`, `YOUTUBE_MAX_DOWNLOAD_MB` e `YOUTUBE_MAX_DURATION_SECONDS`
 
 ## Desenvolvimento
 
@@ -102,10 +105,15 @@ Entidades base:
 
 O menu nao e hardcoded. Ele usa a `CommandRegistry` e os metadados de cada comando.
 
-- `menu` ou `help`: visao geral
-- `menu <categoria>`: submenu da categoria
-- `listacmd [filtro]`: lista de comandos
+- `menu` ou `help`: abre a tela inicial interativa com botão para entrar nos menus
+- `menu categorias`: lista as categorias em uma lista do WhatsApp
+- `menu categoria <categoria>`: lista os comandos da categoria; tocar em um comando executa o handler normal
+- `listacmd [filtro]`: fallback textual que lista os comandos
 - `infocmd <comando>`: detalhes completos
+
+Quando o cliente ou a versão do Baileys não renderiza listas/botões, o bot envia automaticamente uma versão textual equivalente. A imagem ou GIF da tela inicial é opcional e pode ser configurada com `MENU_MEDIA_URL`.
+
+O comando `play` recebe um nome ou URL (`!play <nome ou URL>`), envia thumbnail, título, canal, duração e descrição curta e oferece as ações `ÁUDIO` e `VÍDEO`. A seleção fica associada ao usuário e ao chat por dez minutos. Os limites padrão são `YOUTUBE_MAX_DOWNLOAD_MB=64` e `YOUTUBE_MAX_DURATION_SECONDS=900`; ambos podem ser ajustados no `.env`.
 
 Categorias equivalentes ao bot de referencia foram preservadas como capacidade arquitetural:
 
@@ -218,8 +226,8 @@ Isso evita HTTP espalhado em comando.
 - `menu`, `help`, `listacmd`, `infocmd`, `infobot`, `ping`
 - `perfil`, `status`, `afk`, `rankativo`, `rankinativo`
 - `buscar`, `wikipedia`, `noticias`, `clima`, `livro`, `filme`, `serie`, `traduzir`, `playstore`
-- `printsite`, `sticker`, `totext`, `tomp3`, `videorapido`
-- `admins`, `tagall`, `warn`, `ban`, `unban`, `mute`, `open`, `close`
+- `play`, `printsite`, `sticker`, `totext`, `tomp3`, `videorapido`, `audiorapido`, `audiolento`, `audioreverso`, `bass`
+- `admins`, `tagall`, `warn`, `ban`, `unban`, `mute`, `open`, `close`, `kick`, `promote`, `demote`, `linkgroup`, `revoke`
 - `plugins`, `health`, `setpremium`
 - placeholders de `downloads`, `logos`, `vip`, `rpg`, `games`, `sensitive`
 

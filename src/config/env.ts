@@ -26,6 +26,9 @@ const envSchema = z.object({
   OPENAI_MODEL: z.string().default("gpt-4o-mini"),
   TRANSLATE_PROVIDER: z.string().default("google"),
   THUMBNAIL_SERVICE_BASE: z.string().default("https://image.thum.io/get/width/1200/noanimate"),
+  MENU_MEDIA_URL: z.string().default(""),
+  YOUTUBE_MAX_DOWNLOAD_MB: z.coerce.number().int().positive().default(64),
+  YOUTUBE_MAX_DURATION_SECONDS: z.coerce.number().int().positive().default(900),
   COMMAND_COOLDOWN_SECONDS: z.coerce.number().int().positive().default(3),
   RATE_LIMIT_WINDOW_SECONDS: z.coerce.number().int().positive().default(10),
   RATE_LIMIT_MAX_COMMANDS: z.coerce.number().int().positive().default(6)
@@ -61,6 +64,9 @@ export const env = {
   openAiModel: parsed.OPENAI_MODEL,
   translateProvider: parsed.TRANSLATE_PROVIDER,
   thumbnailServiceBase: parsed.THUMBNAIL_SERVICE_BASE,
+  menuMediaUrl: parsed.MENU_MEDIA_URL,
+  youtubeMaxDownloadBytes: parsed.YOUTUBE_MAX_DOWNLOAD_MB * 1024 * 1024,
+  youtubeMaxDurationSeconds: parsed.YOUTUBE_MAX_DURATION_SECONDS,
   commandCooldownSeconds: parsed.COMMAND_COOLDOWN_SECONDS,
   rateLimitWindowSeconds: parsed.RATE_LIMIT_WINDOW_SECONDS,
   rateLimitMaxCommands: parsed.RATE_LIMIT_MAX_COMMANDS

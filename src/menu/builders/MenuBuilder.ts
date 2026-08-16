@@ -4,9 +4,13 @@ import { formatDateTime, getGreeting } from "../../core/utils/time";
 
 export class MenuBuilder {
   public build(context: CommandContext): string {
-    const categories = context.registry.categories();
+    const categories = context.registry.categories().filter((category) =>
+      category !== "sensitive" || context.env.enableSensitiveCategories
+    );
     const lines = categories.map((category) => {
-      const count = context.registry.listByCategory(category).length;
+      const count = context.registry
+        .listByCategory(category)
+        .filter((command) => !command.hidden && (!command.sensitive || context.env.enableSensitiveCategories)).length;
       return `- ${CATEGORY_LABELS[category]}: ${count} comando(s)`;
     });
 
@@ -18,7 +22,7 @@ export class MenuBuilder {
       `├ Premium: ${context.isPremium ? "Sim" : "Não"}`,
       `├ Prefixo: ${context.prefix ?? context.env.defaultPrefix}`,
       `├ Data/Hora: ${formatDateTime(context.env)}`,
-      `├ Plugins: ${context.registry.categories().length} categorias ativas`,
+      `├ Plugins: ${categories.length} categorias ativas`,
       "├",
       "├ Categorias:",
       ...lines.map((line) => `├ ${line}`),

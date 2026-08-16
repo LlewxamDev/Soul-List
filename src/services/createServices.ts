@@ -16,6 +16,7 @@ import { SpeechService } from "./speech/SpeechService";
 import { StickerService } from "./stickers/StickerService";
 import { TranslationService } from "./translation/TranslationService";
 import { WeatherService } from "./weather/WeatherService";
+import { YouTubeService } from "./youtube/YouTubeService";
 
 export function createServices(env: AppEnv): BotServices {
   return {
@@ -34,6 +35,7 @@ export function createServices(env: AppEnv): BotServices {
     stickers: new StickerService(),
     speech: new SpeechService(env.openAiApiKey),
     ai: new AIService(env.openAiApiKey, env.openAiModel),
-    anime: new AnimeService()
+    anime: new AnimeService(),
+    youtube: new YouTubeService(env.youtubeMaxDownloadBytes, env.youtubeMaxDurationSeconds)
   };
 }

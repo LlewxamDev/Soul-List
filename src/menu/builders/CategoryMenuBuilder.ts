@@ -3,7 +3,9 @@ import type { CommandContext } from "../../core/types/context";
 
 export class CategoryMenuBuilder {
   public build(context: CommandContext, category: CommandCategory): string {
-    const commands = context.registry.listByCategory(category);
+    const commands = context.registry
+      .listByCategory(category)
+      .filter((command) => !command.hidden && (!command.sensitive || context.env.enableSensitiveCategories));
     if (commands.length === 0) {
       return `Nenhum comando cadastrado na categoria ${CATEGORY_LABELS[category]}.`;
     }

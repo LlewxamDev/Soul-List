@@ -12,6 +12,7 @@ import { movieCommand } from "./commands/filme";
 import { newsCommand } from "./commands/noticias";
 import { pingCommand } from "./commands/ping";
 import { playStoreCommand } from "./commands/playstore";
+import { playCommand } from "./commands/play";
 import { printSiteCommand } from "./commands/printsite";
 import { profileCommand } from "./commands/perfil";
 import { searchCommand } from "./commands/buscar";
@@ -25,6 +26,12 @@ import { translateCommand } from "./commands/traduzir";
 import { weatherCommand } from "./commands/clima";
 import { wikipediaCommand } from "./commands/wikipedia";
 import { fastVideoCommand } from "./commands/videorapido";
+import {
+  bassAudioCommand,
+  fastAudioCommand,
+  reverseAudioCommand,
+  slowAudioCommand
+} from "./commands/audioTransforms";
 
 const plugin: BotPlugin = {
   manifest: {
@@ -54,10 +61,15 @@ const plugin: BotPlugin = {
     seriesCommand,
     translateCommand,
     playStoreCommand,
+    playCommand,
     printSiteCommand,
     stickerCommand,
     toTextCommand,
     toMp3Command,
+    fastAudioCommand,
+    slowAudioCommand,
+    reverseAudioCommand,
+    bassAudioCommand,
     fastVideoCommand,
     animeInfoCommand,
     tagMeCommand

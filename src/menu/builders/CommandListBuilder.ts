@@ -4,7 +4,7 @@ export class CommandListBuilder {
   public build(context: CommandContext, filter?: string): string {
     const commands = context.registry
       .all()
-      .filter((command) => !command.hidden)
+      .filter((command) => !command.hidden && (!command.sensitive || context.env.enableSensitiveCategories))
       .filter((command) => {
         if (!filter) {
           return true;

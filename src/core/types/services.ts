@@ -14,6 +14,7 @@ import type { WeatherService } from "../../services/weather/WeatherService";
 import type { WikipediaService } from "../../services/search/WikipediaService";
 import type { PlayStoreService } from "../../services/search/PlayStoreService";
 import type { RateLimitService } from "../../services/cache/RateLimitService";
+import type { YouTubeService } from "../../services/youtube/YouTubeService";
 
 export interface BotServices {
   cache: CacheService;
@@ -32,4 +33,5 @@ export interface BotServices {
   speech: SpeechService;
   ai: AIService;
   anime: AnimeService;
+  youtube: YouTubeService;
 }

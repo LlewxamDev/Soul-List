@@ -7,6 +7,13 @@ import { openCommand } from "./commands/open";
 import { tagAllCommand } from "./commands/tagall";
 import { unbanCommand } from "./commands/unban";
 import { warnCommand } from "./commands/warn";
+import {
+  demoteParticipantCommand,
+  groupLinkCommand,
+  promoteParticipantCommand,
+  removeParticipantCommand,
+  revokeGroupLinkCommand
+} from "./commands/groupActions";
 
 const plugin: BotPlugin = {
   manifest: {
@@ -16,7 +23,21 @@ const plugin: BotPlugin = {
     enabledByDefault: true,
     categories: ["admin", "moderation"]
   },
-  commands: [adminsCommand, tagAllCommand, warnCommand, banCommand, unbanCommand, muteCommand, openCommand, closeCommand]
+  commands: [
+    adminsCommand,
+    tagAllCommand,
+    warnCommand,
+    banCommand,
+    unbanCommand,
+    muteCommand,
+    openCommand,
+    closeCommand,
+    removeParticipantCommand,
+    promoteParticipantCommand,
+    demoteParticipantCommand,
+    groupLinkCommand,
+    revokeGroupLinkCommand
+  ]
 };
 
 export default plugin;

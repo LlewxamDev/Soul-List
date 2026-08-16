@@ -41,6 +41,24 @@ export class FFmpegService {
     });
   }
 
+  public speedAudio(input: Buffer): Promise<Buffer> {
+    return this.runTransform(input, "mp3", (command) => {
+      command.audioFilters("atempo=1.25").audioCodec("libmp3lame").format("mp3");
+    });
+  }
+
+  public reverseAudio(input: Buffer): Promise<Buffer> {
+    return this.runTransform(input, "mp3", (command) => {
+      command.audioFilters("areverse").audioCodec("libmp3lame").format("mp3");
+    });
+  }
+
+  public bassBoost(input: Buffer): Promise<Buffer> {
+    return this.runTransform(input, "mp3", (command) => {
+      command.audioFilters("bass=g=10").audioCodec("libmp3lame").format("mp3");
+    });
+  }
+
   public speedVideo(input: Buffer): Promise<Buffer> {
     return this.runTransform(input, "mp4", (command) => {
       command

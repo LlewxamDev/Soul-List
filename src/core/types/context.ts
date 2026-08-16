@@ -28,6 +28,37 @@ export interface ParsedIncomingMessage {
   media: MediaSummary;
 }
 
+export interface InteractiveButton {
+  id: string;
+  text: string;
+}
+
+export interface InteractiveButtonOptions {
+  text: string;
+  footer?: string;
+  image?: Buffer | string;
+  buttons: InteractiveButton[];
+}
+
+export interface InteractiveListRow {
+  id: string;
+  title: string;
+  description?: string;
+}
+
+export interface InteractiveListSection {
+  title: string;
+  rows: InteractiveListRow[];
+}
+
+export interface InteractiveListOptions {
+  title: string;
+  description: string;
+  footer?: string;
+  buttonText: string;
+  sections: InteractiveListSection[];
+}
+
 export interface CommandContext extends ParsedIncomingMessage {
   env: AppEnv;
   socket: WASocket;
@@ -47,5 +78,7 @@ export interface CommandContext extends ParsedIncomingMessage {
   sendAudio(input: Buffer | string, ptt?: boolean): Promise<void>;
   sendVideo(input: Buffer | string, caption?: string): Promise<void>;
   sendSticker(input: Buffer): Promise<void>;
+  sendButtons(options: InteractiveButtonOptions): Promise<void>;
+  sendList(options: InteractiveListOptions): Promise<void>;
   downloadMedia(): Promise<Buffer | null>;
 }
