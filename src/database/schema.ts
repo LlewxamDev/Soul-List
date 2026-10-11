@@ -68,11 +68,28 @@ export const notesTable = sqliteTable("notes", {
 });
 
 export const economyTable = sqliteTable("economy", {
-  userId: text("user_id").primaryKey(),
+  id: text("id").primaryKey(),
+  userId: text("user_id").notNull(),
+  scopeId: text("scope_id").notNull(),
+  scopeType: text("scope_type").notNull().default("group"),
   balance: integer("balance").notNull().default(0),
   xp: integer("xp").notNull().default(0),
   level: integer("level").notNull().default(1),
+  dailyClaimedAt: integer("daily_claimed_at", { mode: "timestamp_ms" }),
   ...timestampColumns
+});
+
+export const currencyTransactionsTable = sqliteTable("currency_transactions", {
+  id: text("id").primaryKey(),
+  userId: text("user_id").notNull(),
+  scopeId: text("scope_id").notNull(),
+  amount: integer("amount").notNull(),
+  balanceAfter: integer("balance_after").notNull(),
+  type: text("type").notNull(),
+  referenceId: text("reference_id"),
+  targetUserId: text("target_user_id"),
+  reason: text("reason"),
+  createdAt: integer("created_at", { mode: "timestamp_ms" }).notNull().$defaultFn(() => new Date())
 });
 
 export const familyTable = sqliteTable("family", {

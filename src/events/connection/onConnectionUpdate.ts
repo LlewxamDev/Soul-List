@@ -1,5 +1,10 @@
 import { DisconnectReason, type BaileysEventMap } from "@whiskeysockets/baileys";
 import type { Logger } from "pino";
+import qrcodeTerminal from "qrcode-terminal";
+import QRCode from "qrcode";
+import { exec } from "node:child_process";
+
+let hasOpenedImage = false;
 
 export function onConnectionUpdate(
   logger: Logger,
@@ -9,10 +14,22 @@ export function onConnectionUpdate(
   const { connection, qr, lastDisconnect } = update;
 
   if (qr) {
-    logger.info("QR code disponível para pareamento.");
+    logger.info("QR code recebido do WhatsApp.");
+    console.log("\n=================== ESCANEIE O QR CODE ABAIXO ===================");
+    qrcodeTerminal.generate(qr, { small: true });
+    console.log("=================================================================\n");
+
+    const imgPath = "./data/qrcode.png";
+    void QRCode.toFile(imgPath, qr, { width: 450 }).then(() => {
+      if (!hasOpenedImage) {
+        hasOpenedImage = true;
+        exec(`start "" "${imgPath}"`);
+      }
+    }).catch(() => {});
   }
 
   if (connection === "open") {
+    console.log("\n✅ SOUL-LIST CONECTADO COM SUCESSO AO WHATSAPP!\n");
     logger.info("Soul-List conectado ao WhatsApp.");
     return;
   }

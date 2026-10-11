@@ -14,15 +14,19 @@ export const weatherCommand: CommandModule = {
       await context.reply("Informe uma cidade ou região.");
       return;
     }
-    const result = await context.services.weather.current(context.argString);
-    await context.reply(
-      [
-        `Clima em ${result.location}`,
-        `Temperatura: ${result.temperatureC}°C`,
-        `Sensação: ${result.feelsLikeC}°C`,
-        `Descrição: ${result.description}`,
-        `Umidade: ${result.humidity}%`
-      ].join("\n")
-    );
+    try {
+      const result = await context.services.weather.current(context.argString);
+      await context.reply(
+        [
+          `Clima em ${result.location}`,
+          `Temperatura: ${result.temperatureC}°C`,
+          `Sensação: ${result.feelsLikeC}°C`,
+          `Descrição: ${result.description}`,
+          `Umidade: ${result.humidity}%`
+        ].join("\n")
+      );
+    } catch {
+      await context.reply("Não foi possível obter a previsão do tempo no momento (serviço indisponível).");
+    }
   }
 };

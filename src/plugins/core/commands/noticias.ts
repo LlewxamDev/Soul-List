@@ -10,9 +10,17 @@ export const newsCommand: CommandModule = {
     cooldownSeconds: 6
   },
   async execute(context) {
-    const items = await context.services.news.latest(context.argString || "Brasil");
-    await context.reply(
-      ["Últimas notícias:", ...items.map((item, index) => `${index + 1}. ${item.title}\n${item.link}`)].join("\n\n")
-    );
+    try {
+      const items = await context.services.news.latest(context.argString || "Brasil");
+      if (!items || items.length === 0) {
+        await context.reply("Nenhuma notícia encontrada para este tema.");
+        return;
+      }
+      await context.reply(
+        ["Últimas notícias:", ...items.map((item, index) => `${index + 1}. ${item.title}\n${item.link}`)].join("\n\n")
+      );
+    } catch {
+      await context.reply("Não foi possível carregar as notícias no momento (serviço indisponível).");
+    }
   }
 };

@@ -10,6 +10,7 @@ import { PremiumRepository } from "./premium/PremiumRepository";
 import { SettingsRepository } from "./settings/SettingsRepository";
 import { UserRepository } from "./users/UserRepository";
 import { WarningRepository } from "./warnings/WarningRepository";
+import { FamilyRepository } from "./family/FamilyRepository";
 
 export function createRepositories(database: DatabaseClient): BotRepositories {
   return {
@@ -22,6 +23,7 @@ export function createRepositories(database: DatabaseClient): BotRepositories {
     notes: new NotesRepository(database),
     activity: new ActivityRepository(database),
     economy: new EconomyRepository(database),
-    games: new GameSessionRepository(database)
+    games: new GameSessionRepository(database),
+    family: new FamilyRepository(database)
   };
 }

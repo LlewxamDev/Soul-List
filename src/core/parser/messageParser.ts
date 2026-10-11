@@ -7,38 +7,68 @@ function extractText(message: WAMessage["message"] | undefined): string {
     return "";
   }
 
-  if ("conversation" in message && typeof message.conversation === "string") {
-    return message.conversation;
-  }
-  if ("extendedTextMessage" in message) {
-    return message.extendedTextMessage?.text ?? "";
-  }
-  if ("imageMessage" in message) {
-    return message.imageMessage?.caption ?? "";
-  }
-  if ("videoMessage" in message) {
-    return message.videoMessage?.caption ?? "";
-  }
-  if ("buttonsResponseMessage" in message) {
-    return message.buttonsResponseMessage?.selectedButtonId ?? "";
-  }
-  if ("listResponseMessage" in message) {
-    return message.listResponseMessage?.singleSelectReply?.selectedRowId ?? "";
-  }
-  if ("templateButtonReplyMessage" in message) {
-    return message.templateButtonReplyMessage?.selectedId ?? "";
-  }
-  if ("messageContextInfo" in message) {
-    return "";
+  // Desempacota containers aninhados (viewOnce, ephemeral, etc)
+  let current: any = message;
+  while (current) {
+    if (current.ephemeralMessage?.message) {
+      current = current.ephemeralMessage.message;
+    } else if (current.viewOnceMessage?.message) {
+      current = current.viewOnceMessage.message;
+    } else if (current.viewOnceMessageV2?.message) {
+      current = current.viewOnceMessageV2.message;
+    } else if (current.viewOnceMessageV2Extension?.message) {
+      current = current.viewOnceMessageV2Extension.message;
+    } else if (current.documentWithCaptionMessage?.message) {
+      current = current.documentWithCaptionMessage.message;
+    } else {
+      break;
+    }
   }
 
-  const contentType = getContentType(message);
-  if (contentType && "ephemeralMessage" in message) {
-    return extractText(message.ephemeralMessage?.message);
+  if (typeof current.conversation === "string" && current.conversation) {
+    return current.conversation;
   }
-  if (contentType && "viewOnceMessage" in message) {
-    return extractText(message.viewOnceMessage?.message);
+  if (current.extendedTextMessage?.text) {
+    return current.extendedTextMessage.text;
   }
+  if (current.imageMessage?.caption) {
+    return current.imageMessage.caption;
+  }
+  if (current.videoMessage?.caption) {
+    return current.videoMessage.caption;
+  }
+  if (current.buttonsResponseMessage?.selectedButtonId) {
+    return current.buttonsResponseMessage.selectedButtonId;
+  }
+  if (current.buttonsResponseMessage?.selectedDisplayText) {
+    return current.buttonsResponseMessage.selectedDisplayText;
+  }
+  if (current.listResponseMessage?.singleSelectReply?.selectedRowId) {
+    return current.listResponseMessage.singleSelectReply.selectedRowId;
+  }
+  if (current.listResponseMessage?.title) {
+    return current.listResponseMessage.title;
+  }
+  if (current.templateButtonReplyMessage?.selectedId) {
+    return current.templateButtonReplyMessage.selectedId;
+  }
+  if (current.templateButtonReplyMessage?.selectedDisplayText) {
+    return current.templateButtonReplyMessage.selectedDisplayText;
+  }
+  if (current.interactiveResponseMessage) {
+    const rawParams = current.interactiveResponseMessage.nativeFlowResponseMessage?.paramsJson;
+    if (rawParams) {
+      try {
+        const parsed = typeof rawParams === "string" ? JSON.parse(rawParams) : rawParams;
+        const res = parsed?.id ?? parsed?.title ?? parsed?.selectedId ?? "";
+        if (res) return String(res);
+      } catch {}
+    }
+    if (current.interactiveResponseMessage.body?.text) {
+      return current.interactiveResponseMessage.body.text;
+    }
+  }
+
   return "";
 }
 
@@ -72,6 +102,10 @@ export function parseIncomingMessage(message: WAMessage, env: AppEnv): ParsedInc
       }
     : undefined;
 
+  const contextInfo = message.message?.extendedTextMessage?.contextInfo;
+  const mentions = contextInfo?.mentionedJid ?? [];
+  const quotedSender = contextInfo?.participant ?? quotedMessage?.key.participant;
+
   return {
     text,
     normalizedText: text.toLowerCase(),
@@ -80,10 +114,14 @@ export function parseIncomingMessage(message: WAMessage, env: AppEnv): ParsedInc
     args,
     argString: args.join(" "),
     from: message.key.remoteJid ?? "",
-    sender: message.key.participant ?? message.key.remoteJid ?? "",
+    sender: message.key.fromMe
+      ? (message.key.participant || (env.botOwnerNumber ? `${env.botOwnerNumber}@s.whatsapp.net` : (message.key.remoteJid ?? "")))
+      : (message.key.participant ?? message.key.remoteJid ?? ""),
     pushName: message.pushName ?? "Usuário",
     isGroup: Boolean(message.key.remoteJid?.endsWith("@g.us")),
     ...(quotedMessage ? { quotedMessage } : {}),
+    ...(quotedSender ? { quotedSender } : {}),
+    mentions,
     media: detectMedia(message.message)
   };
 }

@@ -7,6 +7,18 @@ export class CommandRegistry {
   private readonly aliases = new Map<string, string>();
 
   public register(pluginId: string, module: CommandModule): void {
+    const name = module.definition.name.toLowerCase();
+    const existing = this.commands.get(name);
+
+    // Prioridade: plugins nativos sempre têm precedência sobre o plugin 'catalog'
+    const isNewCatalog = pluginId === "catalog";
+    const isExistingCatalog = existing?.pluginId === "catalog";
+
+    if (existing && isNewCatalog && !isExistingCatalog) {
+      // Ignora tentativa do catálogo de sobrescrever comando nativo
+      return;
+    }
+
     const command: RegisteredCommand = {
       ...module.definition,
       pluginId,
@@ -14,9 +26,22 @@ export class CommandRegistry {
       execute: module.execute
     };
 
-    this.commands.set(command.name.toLowerCase(), command);
-    for (const alias of command.aliases) {
-      this.aliases.set(alias.toLowerCase(), command.name.toLowerCase());
+    this.commands.set(name, command);
+
+    for (const rawAlias of command.aliases) {
+      const alias = rawAlias.toLowerCase();
+      // Um alias não pode sobrescrever um comando principal já existente
+      if (this.commands.has(alias) && this.commands.get(alias)?.name.toLowerCase() === alias) {
+        continue;
+      }
+      const existingAliasTarget = this.aliases.get(alias);
+      if (existingAliasTarget) {
+        const existingTargetCmd = this.commands.get(existingAliasTarget);
+        if (existingTargetCmd && existingTargetCmd.pluginId !== "catalog" && isNewCatalog) {
+          continue;
+        }
+      }
+      this.aliases.set(alias, name);
     }
   }
 

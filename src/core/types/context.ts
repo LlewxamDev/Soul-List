@@ -25,7 +25,39 @@ export interface ParsedIncomingMessage {
   pushName: string;
   isGroup: boolean;
   quotedMessage?: WAMessage;
+  quotedSender?: string;
+  mentions: string[];
   media: MediaSummary;
+}
+
+export interface InteractiveButtonRow {
+  title: string;
+  description?: string;
+  id: string;
+}
+
+export interface InteractiveButtonSection {
+  title: string;
+  rows: InteractiveButtonRow[];
+}
+
+export interface InteractiveButtonsPayload {
+  title?: string;
+  body: string;
+  footer?: string;
+  imageUrl?: string;
+  buttons?: Array<{
+    type: "quick_reply" | "url" | "call";
+    displayText: string;
+    idOrUrl: string;
+  }>;
+  menuTitle?: string;
+  sections?: InteractiveButtonSection[];
+}
+
+export interface ProgressController {
+  key: WAMessage["key"];
+  update(text: string): Promise<void>;
 }
 
 export interface CommandContext extends ParsedIncomingMessage {
@@ -40,12 +72,16 @@ export interface CommandContext extends ParsedIncomingMessage {
   isAdmin: boolean;
   isOwner: boolean;
   isPremium: boolean;
-  reply(text: string): Promise<void>;
+  reply(text: string, options?: { mentions?: string[] }): Promise<WAMessage | undefined>;
+  replyWithMentions(text: string, mentions: string[]): Promise<WAMessage | undefined>;
   react(emoji: string): Promise<void>;
-  sendText(text: string): Promise<void>;
-  sendImage(input: Buffer | string, caption?: string): Promise<void>;
-  sendAudio(input: Buffer | string, ptt?: boolean): Promise<void>;
-  sendVideo(input: Buffer | string, caption?: string): Promise<void>;
-  sendSticker(input: Buffer): Promise<void>;
+  sendText(text: string): Promise<WAMessage | undefined>;
+  editText(key: WAMessage["key"], newText: string): Promise<WAMessage | undefined>;
+  sendProgress(initialText: string): Promise<ProgressController | undefined>;
+  sendInteractiveButtons(payload: InteractiveButtonsPayload): Promise<WAMessage | undefined>;
+  sendImage(input: Buffer | string, caption?: string): Promise<WAMessage | undefined>;
+  sendAudio(input: Buffer | string, ptt?: boolean): Promise<WAMessage | undefined>;
+  sendVideo(input: Buffer | string, caption?: string): Promise<WAMessage | undefined>;
+  sendSticker(input: Buffer): Promise<WAMessage | undefined>;
   downloadMedia(): Promise<Buffer | null>;
 }

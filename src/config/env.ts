@@ -45,6 +45,7 @@ const ownerNumbers = [
 export const env = {
   botName: parsed.BOT_NAME,
   ownerName: parsed.BOT_OWNER_NAME,
+  botOwnerNumber: parsed.BOT_OWNER_NUMBER.trim() || ownerNumbers[0] || "",
   ownerNumbers,
   defaultPrefix: parsed.PREFIX,
   prefixes: prefixes.length > 0 ? prefixes : [parsed.PREFIX],

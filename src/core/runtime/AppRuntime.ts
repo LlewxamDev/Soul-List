@@ -21,5 +21,10 @@ export class AppRuntime {
 
   public async initialize(): Promise<void> {
     await this.plugins.loadAll();
+    const savedPrefix = await this.repositories.settings.get("bot_prefix");
+    if (savedPrefix) {
+      this.env.prefixes = [savedPrefix];
+      this.env.defaultPrefix = savedPrefix;
+    }
   }
 }

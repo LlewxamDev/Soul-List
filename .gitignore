@@ -5,3 +5,7 @@ data
 sessions
 coverage
 *.log
+*.mp3
+*.mp4
+audit/baseline
+participating_groups.json

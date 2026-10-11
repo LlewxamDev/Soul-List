@@ -14,18 +14,22 @@ export const animeInfoCommand: CommandModule = {
       await context.reply("Informe o nome do anime.");
       return;
     }
-    const result = await context.services.anime.search(context.argString);
-    if (!result) {
-      await context.reply("Nenhum anime encontrado.");
-      return;
+    try {
+      const result = await context.services.anime.search(context.argString);
+      if (!result) {
+        await context.reply("Nenhum anime encontrado.");
+        return;
+      }
+      await context.reply(
+        [
+          `Anime: ${result.title ?? context.argString}`,
+          `Status: ${result.status ?? "N/D"}`,
+          `Episódios: ${result.episodes ?? "N/D"}`,
+          result.synopsis ?? "Sem sinopse."
+        ].join("\n")
+      );
+    } catch {
+      await context.reply("Não foi possível consultar as informações do anime no momento (serviço indisponível).");
     }
-    await context.reply(
-      [
-        `Anime: ${result.title ?? context.argString}`,
-        `Status: ${result.status ?? "N/D"}`,
-        `Episódios: ${result.episodes ?? "N/D"}`,
-        result.synopsis ?? "Sem sinopse."
-      ].join("\n")
-    );
   }
 };

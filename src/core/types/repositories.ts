@@ -8,6 +8,7 @@ import type { PremiumRepository } from "../../repositories/premium/PremiumReposi
 import type { SettingsRepository } from "../../repositories/settings/SettingsRepository";
 import type { UserRepository } from "../../repositories/users/UserRepository";
 import type { WarningRepository } from "../../repositories/warnings/WarningRepository";
+import type { FamilyRepository } from "../../repositories/family/FamilyRepository";
 
 export interface BotRepositories {
   users: UserRepository;
@@ -20,4 +21,5 @@ export interface BotRepositories {
   activity: ActivityRepository;
   economy: EconomyRepository;
   games: GameSessionRepository;
+  family: FamilyRepository;
 }

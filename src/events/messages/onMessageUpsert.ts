@@ -2,6 +2,7 @@ import type { BaileysEventMap, WAMessage, WASocket } from "@whiskeysockets/baile
 import type { AppRuntime } from "../../core/runtime/AppRuntime";
 import { createCommandContext } from "../../core/context/createCommandContext";
 import { parseIncomingMessage } from "../../core/parser/messageParser";
+import { InteractivePollService } from "../../services/interactive/InteractivePollService";
 
 async function resolveAdminStatus(socket: WASocket, chatId: string, sender: string): Promise<boolean> {
   if (!chatId.endsWith("@g.us")) {
@@ -21,7 +22,7 @@ export async function onMessageUpsert(
   runtime: AppRuntime,
   event: BaileysEventMap["messages.upsert"]
 ): Promise<void> {
-  if (event.type !== "notify") {
+  if (event.type !== "notify" && event.type !== "append") {
     return;
   }
 
@@ -30,13 +31,25 @@ export async function onMessageUpsert(
   }
 }
 
-async function handleMessage(socket: WASocket, runtime: AppRuntime, message: WAMessage): Promise<void> {
-  if (!message.message || message.key.fromMe) {
+export async function handleMessage(socket: WASocket, runtime: AppRuntime, message: WAMessage): Promise<void> {
+  if (!message.message) {
     return;
+  }
+
+  if (message.message.pollUpdateMessage) {
+    const handled = await InteractivePollService.getInstance().handlePollUpdate(socket, runtime, message);
+    if (handled) {
+      return;
+    }
   }
 
   const parsed = parseIncomingMessage(message, runtime.env);
   if (!parsed.sender || !parsed.from) {
+    return;
+  }
+
+  // Se a mensagem for enviada pela própria conta conectada (fromMe), só processamos se for um comando com prefixo
+  if (message.key.fromMe && !parsed.commandName) {
     return;
   }
 
@@ -70,6 +83,15 @@ async function handleMessage(socket: WASocket, runtime: AppRuntime, message: WAM
 
   const command = runtime.plugins.registry.get(parsed.commandName);
   const isOwner = runtime.env.ownerNumbers.includes(parsed.sender.replace(/\D/g, ""));
+
+  const isMaintenance = (await runtime.repositories.settings.get("bot_maintenance")) === "true";
+  if (isMaintenance && !isOwner) {
+    await socket.sendMessage(parsed.from, {
+      text: "🔒 *O bot está atualmente em modo de manutenção e acessível apenas pelo dono.*\nAguarde a liberação dos comandos!"
+    });
+    return;
+  }
+
   const isPremium = await runtime.repositories.premium.isPremium(parsed.sender);
   const isAdmin = await resolveAdminStatus(socket, parsed.from, parsed.sender);
 

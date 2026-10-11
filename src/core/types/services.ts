@@ -1,4 +1,5 @@
 import type { AIService } from "../../services/ai/AIService";
+import type { YouTubeDownloadService } from "../../services/downloads/YouTubeDownloadService";
 import type { AnimeService } from "../../services/anime/AnimeService";
 import type { BookService } from "../../services/books/BookService";
 import type { CacheService } from "../../services/cache/CacheService";
@@ -32,4 +33,5 @@ export interface BotServices {
   speech: SpeechService;
   ai: AIService;
   anime: AnimeService;
+  youtube: YouTubeDownloadService;
 }

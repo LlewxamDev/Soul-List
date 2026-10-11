@@ -1,5 +1,6 @@
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join, resolve } from "node:path";
+import { pathToFileURL } from "node:url";
 import type { Logger } from "pino";
 import type { AppEnv } from "../../config/env";
 import type { BotPlugin, PluginManifest } from "../types/plugin";
@@ -9,6 +10,17 @@ interface RuntimePlugin {
   manifest: PluginManifest;
   plugin: BotPlugin;
   origin: "internal" | "external";
+}
+
+async function importModuleSafely(entry: string): Promise<{ default?: BotPlugin }> {
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const mod = require(entry);
+    return mod?.default ? mod : { default: mod };
+  } catch {
+    const dynamicImport = new Function("url", "return import(url)");
+    return (await dynamicImport(pathToFileURL(entry).href)) as { default?: BotPlugin };
+  }
 }
 
 export class PluginRuntime {
@@ -105,7 +117,7 @@ export class PluginRuntime {
       throw new Error(`Plugin sem entry encontrado em ${directory}`);
     }
 
-    const imported = (await import(entry)) as { default?: BotPlugin };
+    const imported = await importModuleSafely(entry);
     const plugin = imported.default;
     if (!plugin) {
       throw new Error(`Plugin inválido em ${entry}`);
@@ -142,7 +154,7 @@ export class PluginRuntime {
       return null;
     }
 
-    const imported = (await import(entry)) as { default?: BotPlugin };
+    const imported = await importModuleSafely(entry);
     const plugin = imported.default;
     if (!plugin) {
       this.logger.warn({ plugin: manifest.id }, "Plugin externo inválido.");
