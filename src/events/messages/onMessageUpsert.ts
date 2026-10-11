@@ -64,8 +64,8 @@ export async function handleMessage(socket: WASocket, runtime: AppRuntime, messa
     const timestamp = getMessageTimestamp(message);
     const now = Math.floor(Date.now() / 1000);
     if (timestamp > 0) {
-      // Descarta se foi enviada antes de o bot ligar (tolerância de 30s) ou tem mais de 60s de atraso
-      if (timestamp < getBotStartTime() - 30 || now - timestamp > 60) {
+      // Descarta mensagens com mais de 3 minutos de atraso (histórico / sync offline antigo)
+      if (now - timestamp > 180) {
         return;
       }
     }
