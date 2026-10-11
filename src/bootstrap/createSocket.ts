@@ -7,6 +7,7 @@ import makeWASocket, {
 import type { Logger } from "pino";
 import type { AppEnv } from "../config/env";
 import { writeFileSync } from "node:fs";
+import { markMessageProcessed } from "../core/messages/messageTracker";
 
 export async function createSocket(env: AppEnv, logger: Logger) {
   const { state, saveCreds } = await useMultiFileAuthState(env.sessionDir);
@@ -25,6 +26,16 @@ export async function createSocket(env: AppEnv, logger: Logger) {
     generateHighQualityLinkPreview: true,
     syncFullHistory: false
   });
+
+  // Intercepta todas as mensagens enviadas para garantir que o proprio bot nunca responda a si mesmo
+  const rawSendMessage = socket.sendMessage.bind(socket);
+  socket.sendMessage = async (...args: Parameters<typeof rawSendMessage>) => {
+    const result = await rawSendMessage(...args);
+    if (result?.key?.id) {
+      markMessageProcessed(result.key.id);
+    }
+    return result;
+  };
 
   if (env.pairingNumber && !socket.authState.creds.registered) {
     const cleanedNumber = env.pairingNumber.replace(/\D/g, "");

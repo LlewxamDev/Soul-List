@@ -26,6 +26,7 @@ export interface ActivePollData {
 export class InteractivePollService {
   private static instance: InteractivePollService;
   private readonly activePolls = new Map<string, ActivePollData>();
+  private readonly processedVoteKeys = new Set<string>();
 
   public static getInstance(): InteractivePollService {
     if (!InteractivePollService.instance) {
@@ -34,19 +35,31 @@ export class InteractivePollService {
     return InteractivePollService.instance;
   }
 
+  private isVoteAlreadyProcessed(key: string): boolean {
+    if (this.processedVoteKeys.has(key)) {
+      return true;
+    }
+    this.processedVoteKeys.add(key);
+    if (this.processedVoteKeys.size > 5000) {
+      const first = this.processedVoteKeys.values().next().value;
+      if (first) {
+        this.processedVoteKeys.delete(first);
+      }
+    }
+    return false;
+  }
+
   public generateSecret(): Buffer {
     return randomBytes(32);
   }
 
   public recordPoll(data: ActivePollData): void {
     this.activePolls.set(data.pollId, data);
-    // Limpa polls antigas após 1 hora
-    if (this.activePolls.size > 200) {
-      const now = Date.now();
-      for (const [id, poll] of this.activePolls.entries()) {
-        if (now - poll.createdAt > 3600000) {
-          this.activePolls.delete(id);
-        }
+    // Limpa polls com mais de 30 minutos
+    const now = Date.now();
+    for (const [id, poll] of this.activePolls.entries()) {
+      if (now - poll.createdAt > 1800000) {
+        this.activePolls.delete(id);
       }
     }
   }
@@ -64,6 +77,17 @@ export class InteractivePollService {
     const pollId = pollUpdate.pollCreationMessageKey.id;
     const pollData = this.activePolls.get(pollId);
     if (!pollData) {
+      return false;
+    }
+
+    // Se a enquete tiver mais de 30 minutos, expira
+    if (Date.now() - pollData.createdAt > 1800000) {
+      this.activePolls.delete(pollId);
+      return false;
+    }
+
+    const voteMsgId = message.key.id;
+    if (voteMsgId && this.isVoteAlreadyProcessed(voteMsgId)) {
       return false;
     }
 
@@ -101,6 +125,12 @@ export class InteractivePollService {
         return false;
       }
 
+      // Deduplica por acao votada pelo usuario nesta enquete especifica (evita eco entre upsert e update)
+      const actionDebounceKey = `ACTION_${pollId}_${voterJid}_${selectedAction.commandText}`;
+      if (this.isVoteAlreadyProcessed(actionDebounceKey)) {
+        return false;
+      }
+
       await this.dispatchVoteAction(socket, runtime, pollData, voterJid, selectedAction);
       return true;
     } catch (err) {
@@ -126,8 +156,20 @@ export class InteractivePollService {
       const pollData = this.activePolls.get(pollId);
       if (!pollData) continue;
 
+      // Se a enquete tiver mais de 30 minutos, expira
+      if (Date.now() - pollData.createdAt > 1800000) {
+        this.activePolls.delete(pollId);
+        continue;
+      }
+
       for (const update of pollUpdates) {
         if (!update.vote) continue;
+
+        const updateKeyId = update.pollUpdateMessageKey?.id;
+        if (updateKeyId && this.isVoteAlreadyProcessed(updateKeyId)) {
+          continue;
+        }
+
         try {
           const meId = jidNormalizedUser(socket.user?.id ?? "");
           const pollCreatorJid = getKeyAuthor(item.key, meId);
@@ -156,6 +198,10 @@ export class InteractivePollService {
           }
 
           if (selectedAction) {
+            const actionDebounceKey = `ACTION_${pollId}_${voterJid}_${selectedAction.commandText}`;
+            if (this.isVoteAlreadyProcessed(actionDebounceKey)) {
+              continue;
+            }
             await this.dispatchVoteAction(socket, runtime, pollData, voterJid, selectedAction);
           }
         } catch (err) {
