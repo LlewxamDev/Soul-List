@@ -9,3 +9,5 @@ coverage
 *.mp4
 audit/baseline
 participating_groups.json
+sessions_backup
+sessions_corrupted_backup

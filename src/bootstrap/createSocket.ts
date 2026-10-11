@@ -8,15 +8,23 @@ import type { Logger } from "pino";
 import type { AppEnv } from "../config/env";
 import { writeFileSync } from "node:fs";
 import { markMessageProcessed } from "../core/messages/messageTracker";
+import { registerKeyStoreClearCallback } from "../core/crypto/sessionHealer";
 
 export async function createSocket(env: AppEnv, logger: Logger) {
   const { state, saveCreds } = await useMultiFileAuthState(env.sessionDir);
   const { version } = await fetchLatestBaileysVersion();
 
+  const signalKeyStore = makeCacheableSignalKeyStore(state.keys, logger);
+  registerKeyStoreClearCallback(() => {
+    try {
+      (signalKeyStore as any).clear?.();
+    } catch {}
+  });
+
   const socket = makeWASocket({
     auth: {
       creds: state.creds,
-      keys: makeCacheableSignalKeyStore(state.keys, logger)
+      keys: signalKeyStore
     },
     version,
     logger,

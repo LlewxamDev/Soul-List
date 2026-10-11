@@ -8,6 +8,7 @@ import {
   isMessageProcessed,
   markMessageProcessed
 } from "../../core/messages/messageTracker";
+import { purgeCorruptedSession } from "../../core/crypto/sessionHealer";
 
 const USER_COOLDOWNS = new Map<string, number>();
 
@@ -48,6 +49,19 @@ export async function onMessageUpsert(
 
 export async function handleMessage(socket: WASocket, runtime: AppRuntime, message: WAMessage): Promise<void> {
   if (!message.message) {
+    // Auto-healing: Se a mensagem falhou na descriptografia Signal (Bad MAC / CIPHERTEXT)
+    if ((message as any).messageStubType === 2 /* CIPHERTEXT */) {
+      const participant = message.key.participant || message.key.remoteJid;
+      const isGroup = Boolean(message.key.remoteJid?.endsWith("@g.us"));
+      if (participant) {
+        purgeCorruptedSession(
+          runtime.env.sessionDir,
+          participant,
+          isGroup ? message.key.remoteJid ?? undefined : undefined,
+          runtime.logger
+        );
+      }
+    }
     return;
   }
 
