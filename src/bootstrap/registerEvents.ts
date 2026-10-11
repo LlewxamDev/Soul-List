@@ -24,6 +24,13 @@ export function registerEvents(
     onConnectionUpdate(runtime.logger, update, restart);
     if (update.connection === "open") {
       try {
+        await (socket as any).uploadPreKeys?.(50);
+        runtime.logger.info("Lote de 50 PreKeys frescas sincronizado com servidores do WhatsApp.");
+      } catch (err) {
+        runtime.logger.warn({ err }, "Aviso: falha ao enviar lote de PreKeys adicionais.");
+      }
+
+      try {
         const groups = await socket.groupFetchAllParticipating();
         const groupList = Object.values(groups).map((g) => ({ id: g.id, subject: g.subject }));
         writeFileSync("./data/participating_groups.json", JSON.stringify(groupList, null, 2), "utf-8");

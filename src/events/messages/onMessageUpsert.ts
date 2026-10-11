@@ -38,7 +38,8 @@ export async function onMessageUpsert(
   runtime: AppRuntime,
   event: BaileysEventMap["messages.upsert"]
 ): Promise<void> {
-  if (event.type !== "notify" && event.type !== "append") {
+  // Processa apenas eventos em tempo real ("notify") para evitar repetição em massa de histórico offline
+  if (event.type !== "notify") {
     return;
   }
 
@@ -49,44 +50,37 @@ export async function onMessageUpsert(
 
 export async function handleMessage(socket: WASocket, runtime: AppRuntime, message: WAMessage): Promise<void> {
   if (!message.message) {
-    // Auto-healing: Se a mensagem falhou na descriptografia Signal (Bad MAC / CIPHERTEXT)
-    if ((message as any).messageStubType === 2 /* CIPHERTEXT */) {
-      const participant = message.key.participant || message.key.remoteJid;
-      const isGroup = Boolean(message.key.remoteJid?.endsWith("@g.us"));
-      if (participant) {
-        purgeCorruptedSession(
-          runtime.env.sessionDir,
-          participant,
-          isGroup ? message.key.remoteJid ?? undefined : undefined,
-          runtime.logger
-        );
-      }
-    }
     return;
   }
 
-  // 1. Deduplicação estrita de ID de mensagem (ignora mensagens já processadas ou enviadas pelo bot)
+  // 1. Deduplicação estrita de ID de mensagem (evita mensagens reprocessadas ou loops)
   const messageId = message.key.id;
   if (!messageId || isMessageProcessed(messageId)) {
     return;
   }
-  markMessageProcessed(messageId);
 
-  // 2. Proteção contra mensagens antigas / histórico offline sincronizado
-  const isVirtualPollAction = messageId.startsWith("POLL_ACTION_");
-  if (!isVirtualPollAction) {
-    const timestamp = getMessageTimestamp(message);
-    const now = Math.floor(Date.now() / 1000);
-    if (timestamp > 0) {
-      // Descarta mensagens com mais de 3 minutos de atraso (histórico / sync offline antigo)
-      if (now - timestamp > 180) {
-        return;
-      }
+  // Descarte de histórico offline ou mensagens muito antigas (tolerância de 5 minutos)
+  const ts = getMessageTimestamp(message);
+  const now = Math.floor(Date.now() / 1000);
+  if (ts > 0 && (ts < getBotStartTime() - 30 || now - ts > 300)) {
+    return;
+  }
+
+  // 2. Bloqueio estrito de mensagens fromMe em conversas privadas com amigos/terceiros
+  if (message.key.fromMe) {
+    const isGroup = Boolean(message.key.remoteJid?.endsWith("@g.us"));
+    const botUserNum = ((socket.user?.id || runtime.env.botOwnerNumber || "").split(":")[0] || "").replace(/\D/g, "");
+    const isSelfChat = Boolean(message.key.remoteJid && botUserNum && message.key.remoteJid.includes(botUserNum));
+
+    // Se o dono estiver conversando no privado com um amigo, o bot nunca deve intervir
+    if (!isGroup && !isSelfChat) {
+      return;
     }
   }
 
   // 3. Trata votos de enquete interativa
   if (message.message.pollUpdateMessage) {
+    markMessageProcessed(messageId);
     const handled = await InteractivePollService.getInstance().handlePollUpdate(socket, runtime, message);
     if (handled) {
       return;
@@ -98,10 +92,21 @@ export async function handleMessage(socket: WASocket, runtime: AppRuntime, messa
     return;
   }
 
-  // Se a mensagem for enviada pela própria conta conectada (fromMe), só processamos se for um comando explícito com prefixo
+  // 4. Se a mensagem for enviada pela própria conta conectada (fromMe), só processamos se for um comando com prefixo
   if (message.key.fromMe && !parsed.commandName) {
     return;
   }
+
+  if (!parsed.commandName) {
+    return;
+  }
+  const command = runtime.plugins.registry.get(parsed.commandName);
+  if (!command) {
+    return;
+  }
+
+  // Marca como processada para não executar o mesmo ID duas vezes
+  markMessageProcessed(messageId);
 
   await runtime.repositories.users.ensure(parsed.sender, parsed.pushName);
   if (parsed.isGroup) {
@@ -127,12 +132,15 @@ export async function handleMessage(socket: WASocket, runtime: AppRuntime, messa
     });
   }
 
-  if (!parsed.commandName || !runtime.plugins.registry.has(parsed.commandName)) {
-    return;
-  }
-
-  const command = runtime.plugins.registry.get(parsed.commandName);
-  const isOwner = runtime.env.ownerNumbers.includes(parsed.sender.replace(/\D/g, ""));
+  const senderNumber = parsed.sender.replace(/\D/g, "");
+  const botNumber = (socket.user?.id || runtime.env.botOwnerNumber || "").split(":")[0]?.replace(/\D/g, "") || "";
+  const botLid = socket.user?.lid?.split(":")[0] || "";
+  const isOwner = Boolean(
+    message.key.fromMe ||
+    runtime.env.ownerNumbers.includes(senderNumber) ||
+    (botNumber && senderNumber.endsWith(botNumber)) ||
+    (botLid && parsed.sender.includes(botLid))
+  );
 
   // 4. Cooldown / Rate Limiting por usuário (exceto dono)
   if (!isOwner) {
@@ -176,7 +184,7 @@ export async function handleMessage(socket: WASocket, runtime: AppRuntime, messa
       isGroup: parsed.isGroup,
       fromMe: message.key.fromMe
     },
-    `Executando comando: !${command.name}`
+    `Executando comando: ${parsed.prefix || ""}${command.name}`
   );
 
   const context = createCommandContext({
