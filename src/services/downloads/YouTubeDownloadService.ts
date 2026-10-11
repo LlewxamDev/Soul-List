@@ -88,10 +88,11 @@ export class YouTubeDownloadService {
   public async downloadAudio(url: string): Promise<Buffer> {
     const outTemplate = path.join(this.tmpDir, `audio_${Date.now()}_%(id)s.%(ext)s`);
 
+    const isYouTube = /youtube\.com|youtu\.be/i.test(url);
+
     return new Promise((resolve, reject) => {
       const args = [
-        "--extractor-args",
-        "youtube:player_client=android",
+        ...(isYouTube ? ["--extractor-args", "youtube:player_client=android"] : []),
         "-x",
         "--audio-format",
         "mp3",
@@ -184,14 +185,14 @@ export class YouTubeDownloadService {
 
   public async downloadVideo(url: string, targetHeight?: number): Promise<Buffer> {
     const outTemplate = path.join(this.tmpDir, `video_${Date.now()}_%(id)s.%(ext)s`);
+    const isYouTube = /youtube\.com|youtu\.be/i.test(url);
     const formatSelector = targetHeight
       ? `bestvideo[height<=${targetHeight}][ext=mp4]+bestaudio[ext=m4a]/bestvideo[height<=${targetHeight}]+bestaudio/best[height<=${targetHeight}]/best`
-      : "b[ext=mp4]/18/best[ext=mp4]/best";
+      : (isYouTube ? "b[ext=mp4]/18/best[ext=mp4]/best" : "bestvideo+bestaudio/best[ext=mp4]/best");
 
     return new Promise((resolve, reject) => {
       const args = [
-        "--extractor-args",
-        "youtube:player_client=android",
+        ...(isYouTube ? ["--extractor-args", "youtube:player_client=android"] : []),
         "-f",
         formatSelector,
         "--remux-video",

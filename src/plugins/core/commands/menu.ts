@@ -45,7 +45,7 @@ const CATEGORY_ALIASES: Record<string, (typeof CATEGORY_ORDER)[number]> = {
 
 const PROMOTED_COMMANDS: Record<string, string[]> = {
   info: ["menu", "ping", "botinfo", "perfil", "uptime", "regras", "infocmd"],
-  downloads: ["play", "ytmp3", "ytmp4", "ytdoc", "tiktok", "instagram", "facebook", "twitter"],
+  downloads: ["play", "ytmp3", "ytmp4", "faceplay", "instaplay", "ytdoc", "tiktok", "instagram", "facebook", "twitter"],
   stickers: ["figu", "s", "toimg", "tovideo", "attp", "ttp", "roubar", "qc", "figuwm"],
   fun: ["beijar", "abracar", "tapa", "chutar", "cafune", "morder", "ship", "corno", "gay", "gado", "dado", "roleta", "piada", "charada", "cantada", "8ball", "coinflip"],
   admin: ["ban", "kick", "warn", "mute", "unmute", "tagall", "totag", "abrir", "fechar", "antilink", "admins", "linkgp"],

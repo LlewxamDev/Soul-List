@@ -31,13 +31,18 @@ export const playCommand: CommandModule = {
 
       await context.react("🎵");
 
+      const isInstagram = /instagram\.com/i.test(info.url);
+      const isFacebook = /facebook\.com|fb\.watch/i.test(info.url);
+      const platformName = isInstagram ? "INSTAGRAM" : isFacebook ? "FACEBOOK" : "YOUTUBE";
+      const platformEmoji = isInstagram ? "📸" : isFacebook ? "📘" : "🎵";
+
       // Card limpo e elegante sem mensagem prematura de download
       const cardBody = [
-        `╭─ 🎵 *YOUTUBE PLAY*`,
-        `├ 📌 *Título:* ${info.title}`,
+        `╭─ ${platformEmoji} *${platformName} PLAY*`,
+        `├ 📌 *Título:* ${info.title.slice(0, 80)}`,
         `├ ⏱ *Duração:* ${info.durationString}`,
-        `├ 👤 *Canal:* ${info.channel}`,
-        `├ 👁 *Visualizações:* ${info.views.toLocaleString("pt-BR")}`,
+        `├ 👤 *Autor:* ${info.channel}`,
+        ...(info.views > 0 ? [`├ 👁 *Visualizações:* ${info.views.toLocaleString("pt-BR")}`] : []),
         `├ 🔗 *Link:* ${info.url}`,
         `╰─────────────────────`,
         "",
@@ -47,7 +52,7 @@ export const playCommand: CommandModule = {
       // Envia cartão com botões de ação rápida
       try {
         await context.sendInteractiveButtons({
-          title: "🎵 YOUTUBE RESULTADO",
+          title: `${platformEmoji} ${platformName} RESULTADO`,
           body: cardBody,
           footer: `${context.env.botName} • Escolha o formato desejado`,
           imageUrl: info.thumbnail,
