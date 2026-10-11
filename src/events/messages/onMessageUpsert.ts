@@ -37,8 +37,7 @@ export async function onMessageUpsert(
   runtime: AppRuntime,
   event: BaileysEventMap["messages.upsert"]
 ): Promise<void> {
-  // Ignora mensagens de histórico/sincronização ("append"). Apenas processa mensagens em tempo real ("notify").
-  if (event.type !== "notify") {
+  if (event.type !== "notify" && event.type !== "append") {
     return;
   }
 
@@ -52,43 +51,27 @@ export async function handleMessage(socket: WASocket, runtime: AppRuntime, messa
     return;
   }
 
-  // 1. Deduplicação estrita de ID de mensagem (ignora mensagens duplicadas do Baileys ou enviadas pelo bot)
+  // 1. Deduplicação estrita de ID de mensagem (ignora mensagens já processadas ou enviadas pelo bot)
   const messageId = message.key.id;
   if (!messageId || isMessageProcessed(messageId)) {
     return;
   }
   markMessageProcessed(messageId);
 
-  // 2. Proteção contra mensagens antigas / histórico offline sincronizado após reconexão
+  // 2. Proteção contra mensagens antigas / histórico offline sincronizado
   const isVirtualPollAction = messageId.startsWith("POLL_ACTION_");
   if (!isVirtualPollAction) {
     const timestamp = getMessageTimestamp(message);
     const now = Math.floor(Date.now() / 1000);
     if (timestamp > 0) {
-      // Descarta se foi enviada antes de o bot ligar ou tem mais de 60 segundos de atraso
-      if (timestamp < getBotStartTime() - 5 || now - timestamp > 60) {
-        runtime.logger.debug(
-          { messageId, timestamp, now, botStartTime: getBotStartTime() },
-          "Mensagem antiga ou de sincronização descartada para evitar repetição/loop."
-        );
+      // Descarta se foi enviada antes de o bot ligar (tolerância de 30s) ou tem mais de 60s de atraso
+      if (timestamp < getBotStartTime() - 30 || now - timestamp > 60) {
         return;
       }
     }
   }
 
-  // 3. Bloqueio estrito de mensagens fromMe em conversas privadas com amigos/terceiros
-  if (message.key.fromMe) {
-    const isGroup = Boolean(message.key.remoteJid?.endsWith("@g.us"));
-    const botUserNum = socket.user?.id?.split(":")[0]?.replace(/\D/g, "") || runtime.env.botOwnerNumber;
-    const isSelfChat = Boolean(message.key.remoteJid && botUserNum && message.key.remoteJid.startsWith(botUserNum));
-
-    // Se for chat privado com outra pessoa, bloqueia totalmente para evitar auto-respostas e loops
-    if (!isGroup && !isSelfChat) {
-      return;
-    }
-  }
-
-  // 4. Trata votos de enquete interativa
+  // 3. Trata votos de enquete interativa
   if (message.message.pollUpdateMessage) {
     const handled = await InteractivePollService.getInstance().handlePollUpdate(socket, runtime, message);
     if (handled) {
@@ -101,10 +84,8 @@ export async function handleMessage(socket: WASocket, runtime: AppRuntime, messa
     return;
   }
 
-  const isOwner = runtime.env.ownerNumbers.includes(parsed.sender.replace(/\D/g, ""));
-
-  // Se a mensagem for enviada pela própria conta conectada (fromMe), só processamos se for um comando com prefixo pelo dono
-  if (message.key.fromMe && (!parsed.commandName || !isOwner)) {
+  // Se a mensagem for enviada pela própria conta conectada (fromMe), só processamos se for um comando explícito com prefixo
+  if (message.key.fromMe && !parsed.commandName) {
     return;
   }
 
@@ -136,7 +117,10 @@ export async function handleMessage(socket: WASocket, runtime: AppRuntime, messa
     return;
   }
 
-  // 5. Cooldown / Rate Limiting por usuário (exceto dono)
+  const command = runtime.plugins.registry.get(parsed.commandName);
+  const isOwner = runtime.env.ownerNumbers.includes(parsed.sender.replace(/\D/g, ""));
+
+  // 4. Cooldown / Rate Limiting por usuário (exceto dono)
   if (!isOwner) {
     const lastExec = USER_COOLDOWNS.get(parsed.sender) ?? 0;
     const cooldownMs = (runtime.env.commandCooldownSeconds || 2) * 1000;
@@ -151,8 +135,6 @@ export async function handleMessage(socket: WASocket, runtime: AppRuntime, messa
       }
     }
   }
-
-  const command = runtime.plugins.registry.get(parsed.commandName);
 
   const isMaintenance = (await runtime.repositories.settings.get("bot_maintenance")) === "true";
   if (isMaintenance && !isOwner) {
@@ -171,6 +153,17 @@ export async function handleMessage(socket: WASocket, runtime: AppRuntime, messa
       return;
     }
   }
+
+  runtime.logger.info(
+    {
+      command: command.name,
+      sender: parsed.sender,
+      from: parsed.from,
+      isGroup: parsed.isGroup,
+      fromMe: message.key.fromMe
+    },
+    `Executando comando: !${command.name}`
+  );
 
   const context = createCommandContext({
     env: runtime.env,
