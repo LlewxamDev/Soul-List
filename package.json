@@ -1,6 +1,6 @@
 {
   "name": "soul-list",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Soul-List: bot de WhatsApp modular em TypeScript + Baileys com sistema de plugins.",
   "private": true,
   "main": "dist/src/index.js",
@@ -20,7 +20,7 @@
     "plugins",
     "bot"
   ],
-  "author": "OpenAI Codex",
+  "author": "Evandro Silva Amorim (@LlewxamDev)",
   "license": "MIT",
   "engines": {
     "node": ">=20.0.0"
