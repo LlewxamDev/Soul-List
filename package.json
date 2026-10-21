@@ -20,7 +20,7 @@
     "plugins",
     "bot"
   ],
-  "author": "OpenAI Codex",
+  "author": "Evandro Silva Amorim (@LlewxamDev)",
   "license": "MIT",
   "engines": {
     "node": ">=20.0.0"
